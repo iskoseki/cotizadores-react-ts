@@ -1,0 +1,57 @@
+.pointer {
+  cursor: pointer;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* acordeon */
+.acordeon-contenido {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.acordeon-contenido.open {
+  max-height: 100vh;
+}
+
+.icono.rotado {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+#acordeon-contenido ul {
+  padding: 10px;
+  margin: 0;
+}
+
+#acordeon-contenido ul li::before {
+  content: "• ";
+  color: #c04356;
+}
+
+#acordeon-contenido ul li {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
