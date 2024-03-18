@@ -20,9 +20,9 @@ export default function QuoterRelojes({
   const initRelojesUrl = import.meta.env.VITE_INIT_RELOJES;
   const notify = () => toast.error("Por favor, rellene todos los campos");
 
-  const AlhajasResponse = useFetch<QuoterAlhajasProps>(initRelojesUrl);
-  const data = AlhajasResponse.data;
-  const { error, isLoading } = AlhajasResponse;
+  const RelojesResponse = useFetch<QuoterAlhajasProps>(initRelojesUrl);
+  const data = RelojesResponse.data;
+  const { error, isLoading } = RelojesResponse;
   if (isLoading) {
     return <Loading />;
   }

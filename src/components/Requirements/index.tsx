@@ -10,13 +10,13 @@ export interface acordeon {
   contenido: string;
 }
 export default function Requirements() {
+  const initAutos = import.meta.env.VITE_INIT_AUTO;
+
   const {
     data: Init,
     error: InitError,
     isLoading: InitIsLoading,
-  } = useFetch<QuoterAutoProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
-  );
+  } = useFetch<QuoterAutoProps>(initAutos);
 
   if (InitIsLoading) {
     return <Loading />;

@@ -13,15 +13,14 @@ export default function QuoterAutomotor({
   children,
 }: QuoterAutoProps) {
   const notify = () => toast.error("Por favor, rellene todos los campos");
+  const initAutos = import.meta.env.VITE_INIT_AUTO;
 
   //initial fetch data
   const {
     data: Init,
     error: InitError,
     isLoading: InitIsLoading,
-  } = useFetch<QuoterAutoProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
-  );
+  } = useFetch<QuoterAutoProps>(initAutos);
 
   //states
   const { year, brand, models, version, productType } = useCotizacionStore();

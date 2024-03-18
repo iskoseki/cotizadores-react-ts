@@ -18,11 +18,9 @@ export default function QuoterAlhajas({
   const [peso, setPeso] = useState<number>(0);
   const { guardarCotizacion } = useStore();
   const [loading, setLoading] = useState(false);
-  //const initAlhajasUrl = import.meta.env.VITE_INIT_ALHAJAS;
+  const initAlhajasUrl = import.meta.env.VITE_INIT_ALHAJAS;
 
-  const AlhajasResponse = useFetch<QuoterAlhajasProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/72"
-  );
+  const AlhajasResponse = useFetch<QuoterAlhajasProps>(initAlhajasUrl);
   const data = AlhajasResponse.data;
   const { error, isLoading } = AlhajasResponse;
   if (isLoading) {

@@ -93,9 +93,9 @@ export const ResultValues = () => {
 
 export function QuoterResult({ setCotizacionCompletada }) {
   const { setShowForm } = useStore();
-  const { data: Init } = useFetch<QuoterAutoProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
-  );
+  const initAutos = import.meta.env.VITE_INIT_AUTO;
+
+  const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
   return (
     <div id="paso-2" className="pasos-cotizador my-4 bg-white br-24 p-4">
       <h2 className="text-normal-dos text-dark bold text-5xl">

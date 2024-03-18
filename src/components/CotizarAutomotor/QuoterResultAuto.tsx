@@ -6,9 +6,9 @@ import { useFetch } from "../../hooks/useFetch";
 
 export function QuoterResultAuto({ setCotizacionCompletada }) {
   const { cotizacionAutomotor, Monto } = useStore();
-  const { data: Init } = useFetch<QuoterAutoProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
-  );
+  const initAutos = import.meta.env.VITE_INIT_AUTO;
+
+  const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
   return (
     <div>
       <div className="pasos-cotizador my-4 bg-white br-24 p-4">
