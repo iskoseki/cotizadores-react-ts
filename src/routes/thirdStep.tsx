@@ -9,6 +9,7 @@ import FormAutoImpulsa from "../components/Form/FormAutoImpulsa";
 import { FourthStepContent } from "./fourdStep";
 import axios from "axios";
 import ErrorComponent from "../components/ErrorComponent";
+import { useFetch } from "../hooks/useFetch";
 //import axios from "axios";
 
 export default function ThirdStep() {
@@ -25,11 +26,16 @@ export default function ThirdStep() {
     Plazo: Plazo,
     PlazoQuincenal: Math.round(Number(PlazoQuincenal)),
   };
-
+  interface SetForm {
+    titulo_ingresa_tus_datos: string;
+    texto_ingresa_tus_datos: string;
+  }
   // Agrega un nuevo estado para manejar el error
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const { data } = useFetch<SetForm>(
+    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/28"
+  );
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setLoading(true);
     try {
@@ -81,12 +87,10 @@ export default function ThirdStep() {
                   <div className=" mb-3">
                     <div className=" p-10 ">
                       <h2 className="text-normal-dos text-dark bold">
-                        Ingresa tus datos
+                        {data?.titulo_ingresa_tus_datos}
                       </h2>
                       <p className="text-dark mb-5">
-                        Lorem ipsum dolor sit amet consectetur. Cursus non
-                        tellus sodales at maecenas egestas justo. Consequat
-                        lobortis tristique faucibus orci quis tempor.
+                        {data?.texto_ingresa_tus_datos}
                       </p>
                       <Suspense fallback={<Loading />}>
                         {selectedQuoter === "Automotor" ? (

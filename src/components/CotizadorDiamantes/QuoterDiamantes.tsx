@@ -25,7 +25,6 @@ const QuoterDiamantes = ({
   const DiamantesResponse = useFetch<QuoterDiamantesProps>(initDiamantesUrl);
   const data = DiamantesResponse.data;
   const { error, isLoading } = DiamantesResponse;
-
   if (isLoading) {
     return <Loading />;
   }
@@ -71,11 +70,10 @@ const QuoterDiamantes = ({
               <div className="p-4 bg-white br-24 mt-4  ">
                 <div id="paso-1" className="pasos-cotizador">
                   <h2 className="text-normal-dos text-dark bold mb-2">
-                    Datos a cotizar
+                    {data?.titulo_datos_cotizador}
                   </h2>
                   <p className="text-dark mb-5 hidden md:block">
-                    Seleccione el kilataje de su prenda e ingrese el peso
-                    aproximado del metal.
+                    {data?.texto_datos_cotizador}
                   </p>
                   <div className="row mb-4">
                     <div className="col-12 mb-4">

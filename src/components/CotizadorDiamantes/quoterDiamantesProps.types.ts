@@ -5,6 +5,8 @@ export interface QuoterDiamantesProps {
   setCotizacionCompletada: Dispatch<SetStateAction<boolean>>;
   handleCotizacionCompleta: (resultadoCotizacion: Cotizacion[]) => void;
   mostrar_datos_diamantes?: true;
+ titulo_datos_cotizador?: string;
+ texto_datos_cotizador?: string;
   cortes?: { imagen: string; nombre: string }[];
   tonos?: { imagen: string; nombre: string }[];
   claridad?: { imagen: string; nombre: string }[];

@@ -15,7 +15,7 @@ export default function Requirements() {
     error: InitError,
     isLoading: InitIsLoading,
   } = useFetch<QuoterAutoProps>(
-    "http://montepio.whileam.com.ar/wp-json/acf/v3/pages/74"
+    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
   );
 
   if (InitIsLoading) {
@@ -28,6 +28,10 @@ export default function Requirements() {
   return (
     <div className="br-24 bg-white">
       <div className="p-4">
+        <h1 className="text-[#757575]">
+          Obtén el préstamo que necesitas dejando tu auto con nosotros.
+        </h1>
+
         {Init?.acordeon ? (
           Init.acordeon.map((item, index) => {
             return (
@@ -75,10 +79,10 @@ const Acordeon: React.FC<acordeon> = ({ titulo, contenido, icono }) => {
           />
         </svg>
       </div>
-      <div className={`acordeon-contenido ${isOpen ? "open" : ""}`}>
+      <div className={`acordeon-contenido ${isOpen ? "open" : ""} `}>
         <div
           id="acordeon-contenido"
-          className="p-4"
+          className="p-4 text-[#424242]"
           dangerouslySetInnerHTML={{ __html: contenido }}
         />
       </div>

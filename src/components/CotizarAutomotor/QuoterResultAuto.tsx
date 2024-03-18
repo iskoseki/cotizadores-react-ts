@@ -13,12 +13,10 @@ export function QuoterResultAuto({ setCotizacionCompletada }) {
     <div>
       <div className="pasos-cotizador my-4 bg-white br-24 p-4">
         <h2 className="text-normal-dos text-dark bold mb-4">
-          Estimación de préstamo
+          {Init?.titulo_estimacion_de_prestamo}
         </h2>
         <p className="text-dark mb-5 hidden md:block">
-          Lorem ipsum dolor sit amet consectetur. Cursus non tellus sodales at
-          maecenas egestas justo. Consequat lobortis tristique faucibus orci
-          quis tempor.
+          {Init?.texto_estimacion_de_prestamo}
         </p>
 
         <>
@@ -40,13 +38,6 @@ export function QuoterResultAuto({ setCotizacionCompletada }) {
                       {cotizacionAutomotor.Prestamo}
                     </p>
                   </div>
-                  <small id="montoHelp" className="form-thin text-muted">
-                    {Init?.texto_estimacion_de_prestamo
-                      ? Init?.texto_estimacion_de_prestamo
-                      : `Este valor está sujeto a ser modificado según las condiciones
-                  específicas del auto`}
-                    .
-                  </small>
                 </div>
                 <div className="col-6 w-full md:w-1/2 mb-2">
                   <label

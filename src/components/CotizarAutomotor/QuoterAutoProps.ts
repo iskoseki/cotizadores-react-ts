@@ -9,8 +9,10 @@ export interface QuoterAutoProps {
     year: string
   ) => void;
   texto_estimacion_de_prestamo?: string;
+  
   mostrar_datos_cotizador?: boolean;
   titulo_datos_cotizador?: string;
+  titulo_estimacion_de_prestamo?: string;
   texto_datos_cotizador?: string | TrustedHTML | undefined ;
   campos_datos_a_cotizar?: {
     nombre_del_campo: string;

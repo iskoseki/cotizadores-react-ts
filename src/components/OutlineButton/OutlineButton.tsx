@@ -23,7 +23,7 @@ const OutlineButton = ({
     title={title}
     onClick={func}
     className="hidden md:block  flex-shrink-0 justify-center items-center gap-2.5 py-1 px-4 w-[11.25rem]
-     h-12 rounded-5xl border-1 border-[#a6192e] text-[#a6192e] text-center leading-normal"
+     h-12 rounded-5xl border-1 hover:bg-[#E65369] hover:text-white border-[#a6192e] text-[#a6192e] text-center leading-normal transition-all duration-300 ease-in-out"
   >
     {children}
   </button>

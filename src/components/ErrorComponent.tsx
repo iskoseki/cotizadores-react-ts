@@ -27,6 +27,17 @@ export default function ErrorComponent({ error }) {
       >
         Cotizar
       </a>
+      <p className="text-[16px] text-[#9E9E9E] py-[33px]">
+        O seguir buscando en las siguientes categorías:
+      </p>
+      <div className="flex gap-[16px]">
+        <a className="text-[16px] font-[600] underline text-[#9E9E9E]" href="">
+          Home
+        </a>
+        <a className="text-[16px] text-[#9E9E9E] font-thin underline" href="">
+          ¿Quiénes somos?
+        </a>
+      </div>
     </div>
   );
 }

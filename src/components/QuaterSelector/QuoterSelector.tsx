@@ -13,8 +13,15 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
   const { data, error, isLoading } = useFetch<Response>(initCotizadoresUrl);
   //const sliderRef = useRef<HTMLDivElement>(null);
   const sliderRef: RefObject<HTMLUListElement> = useRef(null);
-  const { handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
-    useDragMouse(sliderRef);
+  const {
+    handleMouseDown,
+    handleMouseLeave,
+    handleMouseUp,
+    handleMouseMove,
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchMove,
+  } = useDragMouse(sliderRef);
 
   if (isLoading) {
     return <Loading />;
@@ -43,12 +50,15 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
 
         <Suspense fallback={<Loading />}>
           <ul
-            className="nav nav-pills nav-fill overflow-x-auto overflow-hidden scrollbar-none scroll-smooth px-8"
+            className="nav nav-pills flex flex-wrap gap-2 nav-fill overflow-x-auto overflow-hidden scrollbar-none scroll-smooth md:mx-8"
             ref={sliderRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
           >
             {mostrar_cotizador === true ? (
               cotizador.map((cotizador, index) => (

@@ -21,19 +21,19 @@ export default function QuoterCicle() {
   }, [CurrentStep, setPaso1Completado, setPaso2Completado]);
 
   const isActive = useMemo(
-    () => (path: string) => location.pathname === path,
-    []
+    () => (num: number) => CurrentStep === num,
+    [CurrentStep]
   );
 
   return (
-    <section className=" ">
+    <section className="">
       <div className="mt-5 container py-md-5">
         <div className="d-flex justify-content-center">
           <div className="col-7 col-md-5 text-center position-relative">
             <div className="linea-punteada"></div>
             <ul className="list-group list-group-horizontal pasos">
               <NumberCicle
-                isActive={isActive("/")}
+                isActive={isActive(1)}
                 num={1}
                 paso={paso1Completado}
               >
@@ -41,7 +41,7 @@ export default function QuoterCicle() {
               </NumberCicle>
 
               <NumberCicle
-                isActive={isActive("/ingresa-tus-datos")}
+                isActive={isActive(2)}
                 num={2}
                 paso={paso2Completado}
               >
