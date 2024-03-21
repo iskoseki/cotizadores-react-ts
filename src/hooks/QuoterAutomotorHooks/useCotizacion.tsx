@@ -24,7 +24,7 @@ const useFetchCotizacion = (
     (state) => state.guardarCotizacionAutos
   );
   const AutoImplusaResponse = useFetch<QuoterAutoProps>(
-    "http://montepio.whileam.com.ar/wp-json/acf/v3/pages/74"
+    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
   );
 
   const incentivosAutos = AutoImplusaResponse.data;

@@ -8,8 +8,11 @@ export const QuoterItem = ({
   const [showSVG, setShowSVG] = useState(false);
 
   const handleShowSVG = () => {
-    setSelectedQuoter(cotizador.titulo);
-    setShowSVG(true);
+    if (cotizador.titulo === selectedQuoter) {
+      setShowSVG(true);
+    } else {
+      setShowSVG(false);
+    }
   };
   return (
     <li
@@ -34,7 +37,7 @@ export const QuoterItem = ({
       >
         {cotizador.titulo}
       </p>
-      {showSVG && selectedQuoter === cotizador.titulo && (
+      {selectedQuoter === cotizador.titulo && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

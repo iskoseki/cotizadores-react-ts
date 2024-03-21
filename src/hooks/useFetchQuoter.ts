@@ -9,7 +9,7 @@ export const useFetchQuoters = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("http://montepio.whileam.com.ar/wp-json/acf/v3/pages/28");
+        const response = await fetch("https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/28");
         const jsonData = await response.json();
           startTransition(() => { setData(jsonData);})
       } catch (error) {

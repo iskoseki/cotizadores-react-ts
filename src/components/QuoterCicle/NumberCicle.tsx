@@ -15,7 +15,6 @@ const NumberCicle = ({ num, isActive, paso, children }: NumberCicleProps) => {
         className={`numero mx-auto mb-3 d-flex align-items-center justify-content-center ${
           isActive ? "active scale-125" : ""
         }`}
-        style={{ height: "24px", width: "24px" }}
       >
         {paso ? <CheckIcon /> : <span className="text-normal book">{num}</span>}
       </div>

@@ -108,7 +108,7 @@ export default function QuoterAlhajas({
             <div className="d-flex justify-content-center justify-content-md-end">
               <button
                 onClick={handleCotizarClick}
-                className="btn btn-dark py-2 px-5 w-full md:max-w-[195px]"
+                className="btn btn-primary rounded-[8px] py-2 px-5 w-full md:max-w-[195px]"
                 id="btn-paso-adelante-1"
               >
                 Cotizar

@@ -107,7 +107,7 @@ const QuoterDiamantes = ({
                   </div>
                   <div className="d-flex justify-content-center justify-content-md-end">
                     <button
-                      className="btn btn-dark py-2 px-5 w-full md:max-w-[195px]"
+                      className="btn btn-primary py-2 px-5 w-full md:max-w-[195px]"
                       id="btn-paso-adelante-1"
                       onClick={handleCotizarClick}
                     >

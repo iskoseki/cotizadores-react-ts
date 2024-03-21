@@ -336,15 +336,14 @@ ul li .numero.active {
 
 ul li .numero span {
   position: absolute;
-  left: 7px;
+  left: 0px;
   top: 0px;
   color: #bcc8e2;
 }
 
 ul li .numero svg {
-  position: absolute;
-  left: 3px;
-  top: 3px;
+  left: 0px;
+  top: 0px;
   color: #bcc8e2;
 }
 
@@ -938,4 +937,19 @@ a#logo #potenc {
 }
 .video-thumbnail:hover:before {
   color: #eee;
+}
+
+.card-result {
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 21px;
+}
+
+@media screen and (min-width: 768px) {
+  .card-result {
+    background-color: transparent;
+    padding: 0px;
+    border-radius: 12px;
+  }
 }

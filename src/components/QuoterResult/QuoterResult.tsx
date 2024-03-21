@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../../context/CotizacionContext";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import OutlineButton from "../OutlineButton/OutlineButton";
@@ -11,8 +11,8 @@ export const ResultValues = () => {
   return (
     <>
       <div className="pasos-cotizador">
-        <div className="px-3 my-0">
-          <div className="hidden md:flex row">
+        <div className=" my-0">
+          <div className="d-none d-md-flex  row">
             <div className="col-12 col-md-4">
               <label htmlFor="basic-url" className="form-label text-dark bold">
                 Plazos
@@ -32,52 +32,47 @@ export const ResultValues = () => {
         </div>
         {cotizacion ? (
           cotizacion.map((item, index) => (
-            <div className="">
-              <div
-                key={index}
-                className="bg-[#f4f4f4] md:bg-transparent rounded-5xl my-[10px] py-2  md:my-0 md:py-0 md:pb-3 px-3"
-              >
-                <div className="row">
-                  <label
-                    htmlFor="basic-url"
-                    className="form-label text-dark bold hidden"
-                  >
-                    {options[index]}
-                  </label>
-                  <div className="col-12 col-md-4 md-2  md:mb-1">
-                    <div className="input-group">
-                      <p
-                        id="basic-url"
-                        className="md:outline-1 md:outline p-2 w-full  text-dark border-dark rounded-3xl"
-                      >
-                        <span className="md:hidden font-bold">
-                          {options[0]} {item.Producto}
-                        </span>{" "}
-                        <span className="hidden md:block">{item.Producto}</span>
-                      </p>
-                    </div>
+            <div key={index} className="card-result ">
+              <div className="row">
+                <label
+                  htmlFor="basic-url"
+                  className="form-label text-dark bold hidden"
+                >
+                  {options[index]}
+                </label>
+                <div className="col-12 col-md-4 md-2  md:mb-1">
+                  <div className="input-group">
+                    <p
+                      id="basic-url"
+                      className="md:outline-1 md:outline p-2 w-full  text-dark border-dark rounded-3xl"
+                    >
+                      <span className="md:hidden font-bold">
+                        {options[0]} {item.Producto}
+                      </span>{" "}
+                      <span className="hidden md:block">{item.Producto}</span>
+                    </p>
                   </div>
-                  <div className="col-12 col-md-4 md-2  md:mb-1">
-                    <div className="input-group">
-                      <p
-                        className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
-                        id="basic-url"
-                      >
-                        <span className="md:hidden "> {options[1]}:</span> $
-                        {item.PrestamoMaximo}
-                      </p>
-                    </div>
+                </div>
+                <div className="col-12 col-md-4 md-2  md:mb-1">
+                  <div className="input-group">
+                    <p
+                      className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
+                      id="basic-url"
+                    >
+                      <span className="md:hidden "> {options[1]}:</span> $
+                      {item.PrestamoMaximo}
+                    </p>
                   </div>
-                  <div className="col-12 col-md-4 md-2  md:mb-1">
-                    <div className="input-group">
-                      <p
-                        className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
-                        id="basic-url"
-                      >
-                        <span className="md:hidden "> {options[2]}:</span> $
-                        {item.PrestamoMinimo}
-                      </p>
-                    </div>
+                </div>
+                <div className="col-12 col-md-4 md-2  md:mb-1">
+                  <div className="input-group">
+                    <p
+                      className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
+                      id="basic-url"
+                    >
+                      <span className="md:hidden "> {options[2]}:</span> $
+                      {item.PrestamoMinimo}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -94,7 +89,9 @@ export const ResultValues = () => {
 export function QuoterResult({ setCotizacionCompletada }) {
   const { setShowForm } = useStore();
   const initAutos = import.meta.env.VITE_INIT_AUTO;
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
   return (
     <div id="paso-2" className="pasos-cotizador my-4 bg-white br-24 p-4">
@@ -120,7 +117,7 @@ export function QuoterResult({ setCotizacionCompletada }) {
           fun={() => setShowForm(true)}
           id="btn-paso-siguiente"
           type="button"
-          children="siguiente"
+          children="Siguiente"
         />
       </div>
     </div>

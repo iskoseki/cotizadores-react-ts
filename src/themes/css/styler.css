@@ -274,9 +274,9 @@ ul li .numero span {
 }
 
 ul li .numero svg {
-  position: absolute;
-  left: 3px;
-  top: 3px;
+  position: absolute !important;
+  left: 0px !important;
+  top: 0px !important;
   color: #bcc8e2;
 }
 

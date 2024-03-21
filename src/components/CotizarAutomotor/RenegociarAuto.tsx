@@ -112,7 +112,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
         </button>
         <button
           onClick={() => setShowForm(true)}
-          className="btn btn-dark py-2 px-5"
+          className="btn btn-primary py-2 px-5"
         >
           <p className="">Siguiente</p>
         </button>

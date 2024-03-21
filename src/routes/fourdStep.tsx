@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { ResultToPrint } from "../components/ResultToPrint/ResultToPrint";
 import { useReactToPrint } from "react-to-print";
 import Loading from "../components/Loading";
@@ -12,6 +12,10 @@ export function FourthStepContent() {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Suspense fallback={<Loading />}>
       <section className="section  " id="inicio">
@@ -38,7 +42,7 @@ export function FourthStepContent() {
 
                     <a
                       href="https://bgwp.bgroup.com.ar/"
-                      className="btn btn-dark py-2 px-md-2 w-full md:w-[11.25rem] h-12"
+                      className="btn btn-primary py-2 px-md-2 w-full md:w-[11.25rem] h-12"
                     >
                       Volver a inicio
                     </a>

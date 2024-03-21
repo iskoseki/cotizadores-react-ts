@@ -31,10 +31,16 @@ export default function ErrorComponent({ error }) {
         O seguir buscando en las siguientes categorías:
       </p>
       <div className="flex gap-[16px]">
-        <a className="text-[16px] font-[600] underline text-[#9E9E9E]" href="">
+        <a
+          className="text-[16px] font-[600] underline text-[#9E9E9E]"
+          href="https://bgwp.bgroup.com.ar/"
+        >
           Home
         </a>
-        <a className="text-[16px] text-[#9E9E9E] font-thin underline" href="">
+        <a
+          className="text-[16px] text-[#9E9E9E] font-thin underline"
+          href="https://bgwp.bgroup.com.ar/quienes-somos/"
+        >
           ¿Quiénes somos?
         </a>
       </div>

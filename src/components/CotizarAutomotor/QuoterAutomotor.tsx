@@ -100,7 +100,7 @@ export default function QuoterAutomotor({
                       notify();
                     }
                   }}
-                  className="btn btn-dark py-2 px-5 w-full md:w-auto"
+                  className="btn btn-primary  py-2 px-5 w-full md:w-auto"
                   id="btn-paso-adelante-1"
                 >
                   Cotizar

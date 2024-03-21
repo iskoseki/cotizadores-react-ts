@@ -57,7 +57,9 @@ export default function QuoterContainer() {
                       selectedQuoter={selectedQuoter}
                       setSelectedQuoter={setSelectedQuoter}
                     />
-
+                    <div className="d-md-none">
+                      <QuoterCicle />
+                    </div>
                     {selectedQuoter === "Alhajas" && <CotizadorAlhajas />}
                     {selectedQuoter === "Automotor" && <CotizadorAutomotor />}
                     {selectedQuoter === "Relojes" && <CotizadorRelojes />}

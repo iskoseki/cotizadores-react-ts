@@ -62,7 +62,7 @@ export default function FormAutoImpulsa({
               className={`form-control border-dark py-2`}
               maxLength={40}
             />
-            {errors.First_Name && <p>This field is required</p>}
+            {errors.First_Name && <p>Este campo es requerido.</p>}
           </div>
         </div>
         <div className="col-12 col-md-6 mb-3">
@@ -108,7 +108,7 @@ export default function FormAutoImpulsa({
             />
           </div>
         </div>
-        <div className="col-12 col-md-12 mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <Controller
             name="LEADCF10"
             control={control}
@@ -178,12 +178,11 @@ export default function FormAutoImpulsa({
           />
           {errors.LEADCF10 && <p>Este campo es requerido</p>}
         </div>
-        <div className="col-12 col-md-6 mb-3">
+        <div className="hidden col-12 col-md-6 mb-3 ">
           <Controller
             name="Lead_Source"
             control={control}
-            defaultValue=""
-            rules={{ required: true }}
+            defaultValue="Autoimpulsa Web"
             render={({ field }) => (
               <div className="col-12 mb-4">
                 <label
@@ -263,9 +262,9 @@ export default function FormAutoImpulsa({
           id="formsubmit"
           value="Agendar Cita"
           title="Agendar Cita"
-          className={`flex flex-shrink-0 justify-center items-center gap-2.5 py-2 px-6 w-full md:w-[11.25rem] h-12  bg-[#a6192e] Sans" '] text-white text-center rounded-5xl leading-normal`}
+          className={`btn btn-primary flex flex-shrink-0 justify-center items-center gap-2.5 py-2 px-6 w-full md:w-[11.25rem] h-12  bg-[#a6192e] Sans" '] text-white text-center rounded-5xl leading-normal`}
         >
-          Agendar Cita
+          Agendar cita
         </button>
       </div>
     </form>

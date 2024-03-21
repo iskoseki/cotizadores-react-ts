@@ -10,8 +10,15 @@ interface CortesProps {
 export default function Cortes({ data, setCut }: CortesProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const { handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
-    useDragMouse(sliderRef);
+  const {
+    handleMouseDown,
+    handleMouseLeave,
+    handleMouseUp,
+    handleMouseMove,
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchMove,
+  } = useDragMouse(sliderRef);
   return (
     <div className="my-1 br-24 p-8 bg-white ">
       <h2 className="text-normal-dos text-dark text-center bold">Corte</h2>
@@ -24,6 +31,9 @@ export default function Cortes({ data, setCut }: CortesProps) {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
       >
         {data.cortes ? (
           data.cortes.map((corte, index) => (

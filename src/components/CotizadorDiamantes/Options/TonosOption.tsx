@@ -9,8 +9,15 @@ interface ClaridadProps {
 export default function Tonos({ data, setColor }: ClaridadProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const { handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
-    useDragMouse(sliderRef);
+  const {
+    handleMouseDown,
+    handleMouseLeave,
+    handleMouseUp,
+    handleMouseMove,
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchMove,
+  } = useDragMouse(sliderRef);
   return (
     <div className="mt-4 br-24 p-8 bg-white">
       <h2 className="text-normal-dos text-dark text-center bold">Tono</h2>
@@ -26,6 +33,9 @@ export default function Tonos({ data, setColor }: ClaridadProps) {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
       >
         {data.tonos ? (
           data.tonos.map((tono, index) => {

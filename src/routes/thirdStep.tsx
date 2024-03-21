@@ -7,7 +7,6 @@ import { FormValues } from "../types/formTypes";
 import Loading from "../components/Loading";
 import FormAutoImpulsa from "../components/Form/FormAutoImpulsa";
 import { FourthStepContent } from "./fourdStep";
-import axios from "axios";
 import ErrorComponent from "../components/ErrorComponent";
 import { useFetch } from "../hooks/useFetch";
 //import axios from "axios";
@@ -36,6 +35,10 @@ export default function ThirdStep() {
   const { data } = useFetch<SetForm>(
     "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/28"
   );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setCurrentStep(2);
+  }, [setCurrentStep]);
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setLoading(true);
     try {
@@ -45,23 +48,34 @@ export default function ThirdStep() {
         cotizacion:
           selectedQuoter === "Automotor" ? cotizacionAutomotoFinal : cotizacion, // Añade cotizacion o cotizacionAutomotor dependiendo del formulario seleccionado
       };
-      const response = await axios.post(
-        "https://crm.zoho.com/crm/WebToLeadForm",
+      const response = await fetch("https://crm.zoho.com/crm/WebToLeadForm", {
+        method: "POST",
+        body: JSON.stringify(postData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      console.log(
+        response.status,
+        response.statusText,
+        response.headers,
         postData
-      ); //https://crm.zoho.com
-      console.log(response.status, postData);
+      );
       setLoading(false);
       SetCotizacionStatus(true);
     } catch (error) {
       console.error(
         "There has been a problem with your fetch operation:",
-        error.response
+        error
       );
       // Si hay un error, establece el estado de error
       setError(error);
       setLoading(false);
     }
   };
+
   useEffect(() => {
     setCurrentStep(2);
   }, [setCurrentStep]);
@@ -87,7 +101,7 @@ export default function ThirdStep() {
                   <div className=" mb-3">
                     <div className=" p-10 ">
                       <h2 className="text-normal-dos text-dark bold">
-                        {data?.titulo_ingresa_tus_datos}
+                        Ingresa tus Datos
                       </h2>
                       <p className="text-dark mb-5">
                         {data?.texto_ingresa_tus_datos}

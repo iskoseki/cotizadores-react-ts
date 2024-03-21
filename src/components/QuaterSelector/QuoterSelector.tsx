@@ -50,7 +50,7 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
 
         <Suspense fallback={<Loading />}>
           <ul
-            className="nav nav-pills flex flex-wrap gap-2 nav-fill overflow-x-auto overflow-hidden scrollbar-none scroll-smooth md:mx-8"
+            className="nav nav-pills flex flex-col md:flex-row gap-2 nav-fill overflow-x-auto overflow-hidden scrollbar-none scroll-smooth md:mx-8"
             ref={sliderRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
