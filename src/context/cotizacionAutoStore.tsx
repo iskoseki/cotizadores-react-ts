@@ -6,12 +6,17 @@ interface CotizacionState {
   models: string;
   version: string;
   productType: string;
+  productClass?: string;
+  product?: string;
+
   // Add any other state variables you need
   setYear: (newYear: string) => void;
   setBrand: (newBrand: string) => void;
   setModels: (newModels: string) => void;
   setVersion: (newVersion: string) => void;
   setProductType: (newProductType: string) => void;
+  setProductClass: (newProductClass: string) => void;
+  setProduct: (newProduct: string) => void;
   // Add setters for other state variables
 }
 
@@ -21,12 +26,15 @@ const initialState: CotizacionState = {
   models: "",
   version: "",
   productType: "",
-  // Add any other state variables with their initial values
+  productClass: "",
+  product: "",
   setYear: () => {},
   setBrand: () => {},
   setModels: () => {},
   setVersion: () => {},
   setProductType: () => {},
+  setProductClass: () => {},
+  setProduct: () => {},
 };
 
 const useCotizacionStore = create<CotizacionState>((set) => ({
@@ -38,6 +46,10 @@ const useCotizacionStore = create<CotizacionState>((set) => ({
     set((state) => ({ ...state, version: newVersion })),
   setProductType: (newProductType) =>
     set((state) => ({ ...state, productType: newProductType })),
+  setProductClass: (newProductClass) =>
+    set((state) => ({ ...state, productClass: newProductClass })),
+  setProduct: (newProduct) =>
+    set((state) => ({ ...state, product: newProduct })),
   // Add setters for other state variables
 }));
 

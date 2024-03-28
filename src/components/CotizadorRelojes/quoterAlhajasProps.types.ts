@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Cotizacion } from "../../types/cotizacionTypes";
 
 export interface QuoterAlhajasProps {
+
   setCotizacionCompletada: Dispatch<SetStateAction<boolean>>;
   handleCotizacionCompleta: (resultadoCotizacion: Cotizacion[]) => void;
  mostrar_datos_cotizador?: boolean,

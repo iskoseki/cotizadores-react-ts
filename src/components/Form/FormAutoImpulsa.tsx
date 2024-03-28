@@ -57,13 +57,27 @@ export default function FormAutoImpulsa({
           <div className="input-group">
             <input
               type="text"
-              {...register("First_Name")}
+              {...register("First_Name", {
+                required: "Este campo es requerido",
+                minLength: {
+                  value: 3,
+                  message: "El nombre debe tener al menos 3 caracteres",
+                },
+                pattern: {
+                  value: /^[A-Za-z]+$/i,
+                  message: "Solo se permiten letras en este campo",
+                },
+              })}
               id="First_Name"
               className={`form-control border-dark py-2`}
               maxLength={40}
             />
-            {errors.First_Name && <p>Este campo es requerido.</p>}
           </div>
+          {errors.First_Name && (
+            <p className="text-[#FF0000] text-[12px]">
+              *{errors.First_Name.message}
+            </p>
+          )}
         </div>
         <div className="col-12 col-md-6 mb-3">
           <label htmlFor="Last_Name" className="form-label text-dark bold">
@@ -73,25 +87,51 @@ export default function FormAutoImpulsa({
             <input
               className="form-control border-dark py-2"
               type="text"
-              {...register("Last_Name")}
+              {...register("Last_Name", {
+                required: "Este campo es requerido",
+                pattern: {
+                  value: /^[A-Za-z]+$/i,
+                  message: "Solo se permiten letras en este campo",
+                },
+              })}
               id="Last_Name"
               maxLength={80}
             />
           </div>
+          {errors.Last_Name && (
+            <p className="text-[#FF0000] text-[12px]">
+              *{errors.Last_Name.message}
+            </p>
+          )}
         </div>
         <div className="col-12 col-md-12 mb-3">
-          <label htmlFor="Phone" className="form-label text-dark bold">
+          <label
+            htmlFor="Phone"
+            typeof="tel"
+            className="form-label text-dark bold"
+          >
             Teléfono celular
           </label>
           <div className="input-group">
             <input
               className="form-control border-dark py-2"
               type="text"
-              {...register("Mobile")}
+              {...register("Mobile", {
+                required: "Este campo es requerido",
+                pattern: {
+                  value: /^[0-9]+$/i,
+                  message: "Solo se permiten números en este campo",
+                },
+              })}
               id="Mobile"
               maxLength={10}
             />
           </div>
+          {errors.Mobile && (
+            <p className="text-[#FF0000] text-[12px]">
+              * {errors.Mobile.message}.
+            </p>
+          )}
         </div>
         <div className="col-12 col-md-12 mb-3">
           <label htmlFor="Email" className="form-label text-dark bold">
@@ -102,11 +142,20 @@ export default function FormAutoImpulsa({
               type="email"
               className="form-control border-dark py-2"
               autoComplete="false"
-              {...register("Email")}
+              {...register("Email", {
+                required: "Este campo es requerido",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Por favor, ingresa un correo electrónico válido",
+                },
+              })}
               id="Email"
               maxLength={100}
             />
           </div>
+          {errors.Email && (
+            <p className="text-[#FF0000] text-[12px]">{errors.Email.message}</p>
+          )}
         </div>
         <div className="col-12 col-md-6 mb-3">
           <Controller
@@ -262,9 +311,9 @@ export default function FormAutoImpulsa({
           id="formsubmit"
           value="Agendar Cita"
           title="Agendar Cita"
-          className={`btn btn-primary flex flex-shrink-0 justify-center items-center gap-2.5 py-2 px-6 w-full md:w-[11.25rem] h-12  bg-[#a6192e] Sans" '] text-white text-center rounded-5xl leading-normal`}
+          className={`btn btn-primary flex flex-shrink-0 justify-center items-center gap-2.5 py-2 px-2 w-full md:w-[11.25rem] h-12  bg-[#a6192e] Sans" '] text-white text-center rounded-5xl leading-normal`}
         >
-          Agendar cita
+          Enviar Información
         </button>
       </div>
     </form>

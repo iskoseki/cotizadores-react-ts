@@ -3,6 +3,7 @@ import { CotizacionAuto, incentivos } from "../../types/cotizacionTypes";
 import { acordeon } from "../Requirements";
 
 export interface QuoterAutoProps {
+
   setCotizacionCompletada: Dispatch<SetStateAction<boolean>>;
   handleCotizacionCompleta?: (
     resultadoCotizacion: CotizacionAuto,

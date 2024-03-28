@@ -101,15 +101,38 @@ const QuoterDiamantes = ({
                         className="form-control"
                         type="number"
                         min={0}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        onChange={(e) => {
+                          const cantidad = Number(e.target.value);
+                          if (Number.isInteger(cantidad)) {
+                            setQuantity(cantidad);
+                          } else {
+                            alert("Por favor, ingresa un número entero");
+                          }
+                        }}
                       />
                     </div>
                   </div>
                   <div className="d-flex justify-content-center justify-content-md-end">
                     <button
-                      className="btn btn-primary py-2 px-5 w-full md:max-w-[195px]"
-                      id="btn-paso-adelante-1"
+                      type="submit"
                       onClick={handleCotizarClick}
+                      className={`btn btn-primary rounded-[8px] py-2 px-5 "
+                  id="btn-paso-adelante-1  ${
+                    size === 0 ||
+                    quantity === 0 ||
+                    clarity === "" ||
+                    color === "" ||
+                    cut === ""
+                      ? "btn-secondary disabled w-full md:max-w-[195px]"
+                      : " w-full md:max-w-[195px] "
+                  }`}
+                      disabled={
+                        size === 0 ||
+                        quantity === 0 ||
+                        clarity === "" ||
+                        color === "" ||
+                        cut === ""
+                      }
                     >
                       Cotizar
                     </button>

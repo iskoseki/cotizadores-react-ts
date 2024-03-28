@@ -25,7 +25,7 @@ export default function Cortes({ data, setCut }: CortesProps) {
       <hr className="bg-dark my-4" />
 
       <div
-        className=" flex space-x-4 justify-start overflow-x-auto overflow-hidden scrollbar-none scroll-smooth  "
+        className=" flex space-x-4 md:justify-center overflow-x-auto overflow-hidden scrollbar-none scroll-smooth  "
         ref={sliderRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
@@ -45,7 +45,7 @@ export default function Cortes({ data, setCut }: CortesProps) {
               }}
             >
               <div
-                className={`flex items-center justify-center min-w-[194px] min-h-[78px] relative rounded-5xl bg-white border-1 ${
+                className={`flex items-center justify-center min-w-[144px] min-h-[78px] relative rounded-5xl bg-white border-1 ${
                   selected === corte.nombre
                     ? " border-[#A6192E]"
                     : "border-[#FFEBF0]"

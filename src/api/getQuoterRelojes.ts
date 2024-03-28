@@ -1,11 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-export const fetchDataRelojes = async ( value: number, brand: string) => {
+export const fetchDataRelojes = async (value: number, brand: string) => {
+  const encodedBrand = encodeURIComponent(brand);
 
-   const config: AxiosRequestConfig = {
+  const config: AxiosRequestConfig = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_relojes&valor=${value}&marca=${brand}`,
+    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_relojes&valor=${value}&marca=${encodedBrand}`,
   };
 
   try {

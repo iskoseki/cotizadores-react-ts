@@ -3,12 +3,14 @@ import RenegociarAuto from "./RenegociarAuto";
 import { useStore } from "../../context/CotizacionContext";
 import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
 import { useFetch } from "../../hooks/useFetch";
+import { formatCurrency } from "../../utils/formarCurrency";
 
 export function QuoterResultAuto({ setCotizacionCompletada }) {
   const { cotizacionAutomotor, Monto } = useStore();
   const initAutos = import.meta.env.VITE_INIT_AUTO;
 
   const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
+
   return (
     <div>
       <div className="pasos-cotizador my-4 bg-white br-24 p-4">
@@ -35,7 +37,8 @@ export function QuoterResultAuto({ setCotizacionCompletada }) {
                       id="basic-url"
                       className="form-control text-dark border-dark "
                     >
-                      {cotizacionAutomotor.Prestamo}
+                      {cotizacionAutomotor.Prestamo &&
+                        formatCurrency(cotizacionAutomotor.Prestamo)}
                     </p>
                   </div>
                 </div>
@@ -51,7 +54,7 @@ export function QuoterResultAuto({ setCotizacionCompletada }) {
                       className="form-control border-dark  text-dark"
                       id="basic-url"
                     >
-                      {Monto}
+                      {!Monto ? "$0.00" : formatCurrency(Monto)}
                     </p>
                   </div>
                 </div>

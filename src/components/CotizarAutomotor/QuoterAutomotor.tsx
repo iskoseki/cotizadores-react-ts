@@ -2,11 +2,12 @@ import React from "react";
 import { useFetch } from "../../hooks/useFetch";
 import Loading from "../Loading";
 import Requirements from "../Requirements";
-
 import { QuoterAutoProps } from "./QuoterAutoProps";
 import useFetchCotizacion from "../../hooks/QuoterAutomotorHooks/useCotizacion";
 import useCotizacionStore from "../../context/cotizacionAutoStore";
 import toast, { Toaster } from "react-hot-toast";
+import { useStore } from "../../context/CotizacionContext";
+import { formatCurrency } from "../../utils/formarCurrency";
 
 export default function QuoterAutomotor({
   setCotizacionCompletada,
@@ -24,13 +25,17 @@ export default function QuoterAutomotor({
 
   //states
   const { year, brand, models, version, productType } = useCotizacionStore();
+  const { Plazo } = useStore();
+
   const { data: prestamo } = useFetchCotizacion(
     Number(year),
     Number(brand),
     Number(models),
-    12,
+    Number(Plazo),
     version,
-    productType
+    productType,
+    "1",
+    "817"
   );
 
   //handlers
@@ -64,6 +69,7 @@ export default function QuoterAutomotor({
                   }}
                 />
               ) : null}
+              {/* children => Form fields */}
               {children}
               <div className="col-12 mb-3">
                 <label
@@ -72,17 +78,9 @@ export default function QuoterAutomotor({
                 >
                   Podrías recibir hasta
                 </label>
-
-                <p className="form-control border-dark py-2">
-                  {prestamo.Prestamo ? "$" + prestamo.Prestamo : "$" + 0}
+                <p className="form-control text-dark py-2">
+                  {prestamo.Prestamo ? formatCurrency(prestamo.Prestamo) : "$0"}
                 </p>
-                <small id="montoHelp" className="form-thin text-muted">
-                  {Init?.texto_estimacion_de_prestamo
-                    ? Init?.texto_estimacion_de_prestamo
-                    : `Este valor está sujeto a ser modificado según las condiciones
-                  específicas del auto`}
-                  .
-                </small>
               </div>
               <div className="d-flex justify-content-center justify-content-md-end">
                 <button
@@ -93,15 +91,22 @@ export default function QuoterAutomotor({
                       models &&
                       version &&
                       productType &&
-                      prestamo.Prestamo
+                      prestamo.Prestamo > 0
                     ) {
                       setCotizacionCompletada(true);
                     } else {
                       notify();
                     }
                   }}
-                  className="btn btn-primary  py-2 px-5 w-full md:w-auto"
+                  className={`btn ${
+                    prestamo.Prestamo && prestamo.Prestamo > 0
+                      ? "btn-primary"
+                      : "btn-secondary"
+                  }  py-2 px-5 w-full md:w-auto `}
                   id="btn-paso-adelante-1"
+                  disabled={
+                    prestamo.Prestamo && prestamo.Prestamo > 0 ? false : true
+                  }
                 >
                   Cotizar
                 </button>
@@ -110,6 +115,7 @@ export default function QuoterAutomotor({
           )}
         </div>
       </div>
+
       <Requirements />
     </>
   );

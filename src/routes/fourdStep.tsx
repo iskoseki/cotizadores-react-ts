@@ -33,6 +33,12 @@ export function FourthStepContent() {
                     seleccion={[""]}
                   />
                   <div className="flex flex-wrap gap-2 justify-content-center justify-content-md-end">
+                    <a
+                      href="https://bgwp.bgroup.com.ar/sucursales/"
+                      className="btn btn-outline-dark flex justify-center items-center  py-2 px-md-2 w-full md:w-[12.25rem] h-12 "
+                    >
+                      Encuentra tu sucursal
+                    </a>
                     <button
                       onClick={handlePrint}
                       className="btn btn-outline-dark py-2 px-md-2 w-full md:w-[11.25rem] h-12 "
@@ -42,7 +48,7 @@ export function FourthStepContent() {
 
                     <a
                       href="https://bgwp.bgroup.com.ar/"
-                      className="btn btn-primary py-2 px-md-2 w-full md:w-[11.25rem] h-12"
+                      className="btn btn-primary flex justify-center items-center py-2 px-md-2 w-full md:w-[11.25rem] h-12"
                     >
                       Volver a inicio
                     </a>

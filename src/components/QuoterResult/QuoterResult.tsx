@@ -4,6 +4,7 @@ import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import OutlineButton from "../OutlineButton/OutlineButton";
 import { useFetch } from "../../hooks/useFetch";
 import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
+import { formatCurrency } from "../../utils/formarCurrency";
 
 export const ResultValues = () => {
   const { cotizacion } = useStore();
@@ -59,8 +60,8 @@ export const ResultValues = () => {
                       className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
                       id="basic-url"
                     >
-                      <span className="md:hidden "> {options[1]}:</span> $
-                      {item.PrestamoMaximo}
+                      <span className="md:hidden "> {options[1]}:</span>
+                      {formatCurrency(item.PrestamoMaximo)}
                     </p>
                   </div>
                 </div>
@@ -70,8 +71,8 @@ export const ResultValues = () => {
                       className="md:outline-1 md:outline p-2 w-full text-dark border-dark rounded-3xl"
                       id="basic-url"
                     >
-                      <span className="md:hidden "> {options[2]}:</span> $
-                      {item.PrestamoMinimo}
+                      <span className="md:hidden "> {options[2]}:</span>
+                      {formatCurrency(item.PrestamoMinimo)}
                     </p>
                   </div>
                 </div>
@@ -110,7 +111,7 @@ export function QuoterResult({ setCotizacionCompletada }) {
           }}
           id="btn-paso-atras"
           type="button"
-          children="Volver"
+          children="Volver a cotizar"
         />
 
         <PrimaryButton

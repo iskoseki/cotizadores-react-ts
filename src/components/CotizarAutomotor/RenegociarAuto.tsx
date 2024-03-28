@@ -1,6 +1,8 @@
 import { useStore } from "../../context/CotizacionContext";
 import React, { useEffect, useState } from "react";
 import { calcularPagoQuincenal } from "../../utils/pagoQuincenalCal";
+import { formatCurrency } from "../../utils/formarCurrency";
+import CurrencyInput from "react-currency-input-field";
 
 export default function RenegociarAuto({ setCotizacionCompletada }) {
   const {
@@ -27,19 +29,6 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
   }, [Monto]);
 
   const [error, setError] = useState<string | null>();
-
-  const handleMontoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMonto = Number(e.target.value);
-    setInputMonto(newMonto);
-
-    if (newMonto < 20000) {
-      setError("El monto mínimo del préstamo es de $20,000");
-    } else if (newMonto > Prestamo) {
-      setError(`El monto máximo del préstamo es de $${Prestamo}`);
-    } else {
-      setError(null);
-    }
-  };
 
   const handleMontoBlur = () => {
     let newMonto = inputMonto;
@@ -68,17 +57,25 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
             Monto deseado del préstamo
           </label>
           {error && <p className="text-red-500 text-[12px]">{error}</p>}
-          <input
-            className="form-control border-dark appearance-none"
-            type="number"
-            min="20000"
-            max={Prestamo}
-            onChange={handleMontoChange}
-            onBlur={handleMontoBlur}
-          />
+          <div className="input-group">
+            <span className="input-group-text text-[#9BADD3]">$</span>
+            <CurrencyInput
+              className="form-control"
+              id="input-example"
+              name="input-name"
+              placeholder="Por favor ingresa un número"
+              defaultValue={0}
+              decimalsLimit={2}
+              max={Prestamo && Prestamo}
+              onValueChange={(value) => {
+                setInputMonto(Number(value));
+                handleMontoBlur();
+              }}
+            />
+          </div>
           <small id="montoHelp" className="form-text text-muted ">
-            El monto mínimo del préstamo es de $20,000 y un máximo de $
-            {Prestamo}.
+            El monto mínimo del préstamo es de $20,000 y un máximo de{" "}
+            {formatCurrency(Prestamo)}.
           </small>
         </div>
         <div className="flex flex-col md:flex-row justify-between mb-8">
@@ -88,7 +85,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
             </span>
             <hr className="border-dashed border-2 border-[#E0E0E0] flex-grow mx-2" />
             <span className="text-right mr-2 text-[#616161] font-semibold">
-              ${PlazoQuincenal && Math.round(PlazoQuincenal)}
+              {!PlazoQuincenal ? "$0.00" : formatCurrency(PlazoQuincenal)}
             </span>
           </div>
           <div className=" w-full md:col-6 mb-4 flex justify-between items-end">
@@ -108,7 +105,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
           className="btn btn-outline-dark hidden md:block py-2 px-5"
           id="btn-paso-atras-1"
         >
-          Volver
+          Volver a cotizar
         </button>
         <button
           onClick={() => setShowForm(true)}

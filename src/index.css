@@ -335,7 +335,7 @@ ul li .numero.active {
 }
 
 ul li .numero span {
-  position: absolute;
+  position: sticky;
   left: 0px;
   top: 0px;
   color: #bcc8e2;
@@ -348,7 +348,7 @@ ul li .numero svg {
 }
 
 ul li .numero.active span {
-  position: absolute;
+  position: sticky;
   color: #dfdb95;
 }
 

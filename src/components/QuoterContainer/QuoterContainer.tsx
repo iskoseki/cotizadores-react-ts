@@ -30,8 +30,8 @@ export default function QuoterContainer() {
     // Verificamos si la ruta corresponde a alguna de nuestras opciones
     if (path.includes("/cotizacion/alhajas")) {
       setSelectedQuoter("Alhajas");
-    } else if (path.includes("/cotizacion/automotor")) {
-      setSelectedQuoter("Automotor");
+    } else if (path.includes("/cotizacion/auto")) {
+      setSelectedQuoter("Auto");
     } else if (path.includes("/cotizacion/relojes")) {
       setSelectedQuoter("Relojes");
     } else if (path.includes("/cotizacion/diamantes")) {
@@ -61,7 +61,7 @@ export default function QuoterContainer() {
                       <QuoterCicle />
                     </div>
                     {selectedQuoter === "Alhajas" && <CotizadorAlhajas />}
-                    {selectedQuoter === "Automotor" && <CotizadorAutomotor />}
+                    {selectedQuoter === "Auto" && <CotizadorAutomotor />}
                     {selectedQuoter === "Relojes" && <CotizadorRelojes />}
                     {selectedQuoter === "Diamantes" && <CotizadorDiamantes />}
                   </div>

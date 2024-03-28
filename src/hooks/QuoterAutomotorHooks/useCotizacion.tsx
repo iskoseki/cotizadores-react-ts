@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { CotizacionAuto } from "../../types/cotizacionTypes";
+import { CotizacionAuto, incentivos } from "../../types/cotizacionTypes";
 import { useStore } from "../../context/CotizacionContext";
 import { useFetch } from "../useFetch";
 import { QuoterAutoProps } from "../../components/CotizarAutomotor/QuoterAutoProps";
+import { Response } from "../../components/QuaterSelector/QuaterSelector.types";
 
 const useFetchCotizacion = (
   yearKey: number,
@@ -11,7 +12,9 @@ const useFetchCotizacion = (
   modelKey: number,
   plazo: number,
   versionKey: string,
-  productType: string
+  productType: string,
+  productClass: string,
+  product: string
 ): {
   data: CotizacionAuto;
   isLoading: boolean;
@@ -29,6 +32,7 @@ const useFetchCotizacion = (
 
   const incentivosAutos = AutoImplusaResponse.data;
   const incentivos = incentivosAutos?.incentivos;
+  console.log(incentivos);
 
   useEffect(() => {
     const fetchCotizacion = async () => {
@@ -39,17 +43,20 @@ const useFetchCotizacion = (
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_monto_auto&modelo=${modelKey}&marca=${brandKey}&ano=${yearKey}&tipo_cliente=A&producto=817&plazo=${plazo}&version=${versionKey}&tipo_producto=${productType}&clase_producto=1`,
+          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_monto_auto&modelo=${modelKey}&marca=${brandKey}&ano=${yearKey}&tipo_cliente=A&producto=${product}&plazo=${plazo}&version=${versionKey}&tipo_producto=${productType}&clase_producto=${productClass}`,
         };
-
+        console.log("URL", config);
         const res = await axios.request(config);
         const data = res.data;
         const response = JSON.parse(data);
 
         // Buscar el incentivo correspondiente
         const incentivo = incentivos?.find(
-          (incentivo) => incentivo.anio === yearKey.toString()
+          (incentivo) =>
+            incentivo.anio === yearKey.toString() &&
+            incentivo.producto === product
         );
+        console.log("INCENTIVO", incentivo);
         const nuevoPrestamo = incentivo
           ? response.obj_data.Prestamo +
             (response.obj_data.Prestamo * Number(incentivo.porcentaje)) / 100
@@ -85,6 +92,8 @@ const useFetchCotizacion = (
     productType,
     guardarCotizacionAutos,
     incentivos,
+    product,
+    productClass,
   ]);
   return { data, isLoading, error };
 };
