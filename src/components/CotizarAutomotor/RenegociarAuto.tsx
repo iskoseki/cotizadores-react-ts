@@ -22,41 +22,57 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
     }
   }, [Prestamo, guardarMonto, Monto]);
 
-  const [inputMonto, setInputMonto] = useState(Monto);
-
-  useEffect(() => {
-    if (Monto) setInputMonto(Monto > 20000 ? Monto : 20000);
-  }, [Monto]);
+  const [inputMonto, setInputMonto] = useState<number>(0);
+  const [inputMontoState, setInputMontoState] = useState<boolean>(false);
 
   const [error, setError] = useState<string | null>();
 
-  const handleMontoBlur = () => {
-    let newMonto = inputMonto;
+  const handleMontoChange = (monto: number) => {
+    let newMonto = monto;
+    let errorMessage = "";
     if (newMonto)
       if (newMonto < 20000) {
         newMonto = 20000;
+        errorMessage = "El monto ingresado es menor al mínimo permitido.";
       } else if (newMonto > Prestamo) {
         newMonto = Prestamo;
+        errorMessage = "El monto ingresado es mayor al máximo permitido.";
       }
     guardarMonto(Number(newMonto));
     const newPlazo = calcularPagoQuincenal(Number(newMonto), Plazo);
     guardarPlazoQuincenal(newPlazo);
+    setError(errorMessage);
   };
-
   const handleButtonClick = () => {
     // Lógica para modificar el estado
     setCotizacionCompletada(false);
   };
 
+  const disableButton = () => {
+    if (
+      (inputMonto && inputMonto >= Prestamo) ||
+      (inputMonto && inputMonto < 20000)
+    ) {
+      return true;
+    } else if (inputMonto === 0 || !inputMonto) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div id="renegociar" className="pasos-cotizador my-4 bg-white br-24 p-4">
-      <h2 className="text-normal-dos text-dark bold mb-8 ">Renegociar</h2>
+      <h2 className="text-normal-dos text-dark bold mb-8 ">
+        ¿Necesitás un monto menor?
+      </h2>
       <div className="row ">
         <div className="col-12  w-full mb-4">
           <label htmlFor="basic-url" className="form-label text-dark bold">
             Monto deseado del préstamo
           </label>
           {error && <p className="text-red-500 text-[12px]">{error}</p>}
+
           <div className="input-group">
             <span className="input-group-text text-[#9BADD3]">$</span>
             <CurrencyInput
@@ -66,10 +82,14 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
               placeholder="Por favor ingresa un número"
               defaultValue={0}
               decimalsLimit={2}
-              max={Prestamo && Prestamo}
+              max={Prestamo}
+              intlConfig={{ locale: "es-MX", currency: "MXN" }}
+              decimalSeparator="."
+              groupSeparator=","
+              prefix=" "
               onValueChange={(value) => {
                 setInputMonto(Number(value));
-                handleMontoBlur();
+                handleMontoChange(Number(value));
               }}
             />
           </div>
@@ -109,7 +129,10 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
         </button>
         <button
           onClick={() => setShowForm(true)}
-          className="btn btn-primary py-2 px-5"
+          className={`btn ${
+            disableButton() ? "btn-secundary" : "btn-primary"
+          }  py-2 px-5`}
+          disabled={disableButton()}
         >
           <p className="">Siguiente</p>
         </button>

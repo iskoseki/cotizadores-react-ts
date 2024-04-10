@@ -27,7 +27,6 @@ export default function OptionsAutomotor() {
     setProductType,
   } = useCotizacionStore();
 
-  // Fetch year options using custom hook
   const { data: yearData } = useFetchYears();
   const { data: brandData } = useFetchBrands(Number(year));
   const { data: modelsData } = useFetchModels(Number(year), Number(brand));

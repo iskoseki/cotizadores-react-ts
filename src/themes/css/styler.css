@@ -254,33 +254,33 @@ a {
   background-color: transparent;
 }
 
-ul li .numero {
-  position: relative;
+ul li .CicleNumero {
+  position: sticky;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background-color: #ece9be;
 }
 
-ul li .numero.active {
+ul li .CicleNumero.active {
   background-color: #dfdb95;
 }
 
-ul li .numero span {
+ul li .CicleNumero span {
   position: absolute;
   left: 7px;
   top: 0px;
   color: #bdbdbd;
 }
 
-ul li .numero svg {
+ul li .CicleNumero svg {
   position: absolute !important;
   left: 0px !important;
   top: 0px !important;
   color: #bcc8e2;
 }
 
-ul li .numero.active span {
+ul li .CicleNumero.active span {
   position: absolute;
   color: #757575;
 }

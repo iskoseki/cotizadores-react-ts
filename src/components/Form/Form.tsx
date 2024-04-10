@@ -17,6 +17,7 @@ export default function Form({
     formState: { errors },
   } = useForm<FormValues>();
   const { setShowForm } = useStore();
+
   return (
     <form
       id="webform"
@@ -58,17 +59,13 @@ export default function Form({
               type="text"
               {...register("First_Name", {
                 required: "Este campo es requerido",
-                minLength: {
-                  value: 3,
-                  message: "El nombre debe tener al menos 3 caracteres",
-                },
                 pattern: {
                   value: /^[A-Za-z]+$/i,
                   message: "Solo se permiten letras en este campo",
                 },
               })}
               id="First_Name"
-              className={`form-control border-dark py-2`}
+              className="form-control border-dark py-2"
               maxLength={40}
             />
           </div>

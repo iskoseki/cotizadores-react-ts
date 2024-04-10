@@ -10,6 +10,7 @@ export default function CotizadorDiamantes() {
 
   const handleCotizacionCompleta = (resultadoCotizacion: Cotizacion[]) => {
     guardarCotizacion(resultadoCotizacion);
+    console.log("RESULTADO COTIZACIÓN", resultadoCotizacion);
     setCotizacionCompletada(true);
   };
 

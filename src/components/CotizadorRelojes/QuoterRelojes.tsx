@@ -101,9 +101,13 @@ export default function QuoterRelojes({
                       className="form-control"
                       id="input-example"
                       name="input-name"
+                      prefix=" "
                       placeholder="Por favor ingresa un número"
                       defaultValue={0}
                       decimalsLimit={2}
+                      intlConfig={{ locale: "es-MX", currency: "MXN" }}
+                      decimalSeparator="."
+                      groupSeparator=","
                       onValueChange={(value) => setPrecio(Number(value))}
                     />
                   </div>

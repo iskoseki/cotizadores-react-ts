@@ -8,9 +8,9 @@ export interface QuoterDiamantesProps {
   mostrar_datos_diamantes?: true;
  titulo_datos_cotizador?: string;
  texto_datos_cotizador?: string;
-  cortes?: { imagen: string; nombre: string }[];
-  tonos?: { imagen: string; nombre: string }[];
-  claridad?: { imagen: string; nombre: string }[];
+  cortes?: { imagen: string; nombre: string, value: string }[];
+  tonos?: { imagen: string; nombre: string, value: string }[];
+  claridad?: { imagen: string; nombre: string, value: string }[];
   campos_datos_a_cotizar?: {
     nombre_del_campo: string;
     tipo_de_campo: number;

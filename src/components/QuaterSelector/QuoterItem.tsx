@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const QuoterItem = ({
   cotizador,
@@ -6,15 +6,6 @@ export const QuoterItem = ({
   setSelectedQuoter,
   selectedQuoter,
 }) => {
-  const [showSVG, setShowSVG] = useState(false);
-
-  const handleShowSVG = () => {
-    if (cotizador.titulo === selectedQuoter) {
-      setShowSVG(true);
-    } else {
-      setShowSVG(false);
-    }
-  };
   return (
     <li
       key={index}
@@ -25,7 +16,6 @@ export const QuoterItem = ({
       }`}
       onClick={() => {
         setSelectedQuoter(cotizador.titulo);
-        handleShowSVG();
       }}
     >
       <p

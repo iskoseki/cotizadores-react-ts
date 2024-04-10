@@ -22,7 +22,8 @@ export default function ResultoToPrintHead() {
         ¡Cita exitosa!
       </h2>
       <p className="text-dark mb-5 bold text-center">
-        Recordá que todas las cotizaciones son estimativas.
+        Recuerda que los montos son aproximados y sujetos a valuación en
+        sucursal.
       </p>
     </div>
   );

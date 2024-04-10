@@ -2,10 +2,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
 export const fetchDataDiamantes = async ( size: number, quantity: number, clarity: string, color:string ,cut:string) => {
 
+ const encodedClarity = encodeURIComponent(clarity);
+ const encodedColor = encodeURIComponent(color);
+ const encodedCut = encodeURIComponent(cut);
+
  const config: AxiosRequestConfig = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_diamantes&tamano=${size}&cantidad=${quantity}&id_web_claridad=${clarity}&id_web_color=${color}&id_web_corte=${cut}`,
+    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_diamantes&tamano=${size}&cantidad=${quantity}&id_web_claridad=${encodedClarity}&id_web_color=${encodedColor}&id_web_corte=${encodedCut}`
   };
   try {
     const response = await axios.request(config);
@@ -17,4 +21,3 @@ export const fetchDataDiamantes = async ( size: number, quantity: number, clarit
     console.error("Error en la peticion de Cotizacion Diamantes",error.message);
   }
 };
-

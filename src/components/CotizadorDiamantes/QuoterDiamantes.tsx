@@ -32,6 +32,8 @@ const QuoterDiamantes = ({
     return <div>Error: {error.message}</div>;
   }
   const handleCotizarClick = async () => {
+    console.log("handleCotizacion", size, quantity, clarity, color, cut);
+
     if (size && quantity && clarity && color && cut) {
       setLoading(true);
       const data = await fetchDataDiamantes(
@@ -41,6 +43,7 @@ const QuoterDiamantes = ({
         color,
         cut
       );
+
       handleCotizacionCompleta(data);
       setLoading(false);
       setCotizacionCompletada(true);

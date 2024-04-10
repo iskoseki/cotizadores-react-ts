@@ -24,7 +24,8 @@ export default function QuoterAutomotor({
   } = useFetch<QuoterAutoProps>(initAutos);
 
   //states
-  const { year, brand, models, version, productType } = useCotizacionStore();
+  const { year, brand, models, version, productType, product, productClass } =
+    useCotizacionStore();
   const { Plazo } = useStore();
 
   const { data: prestamo } = useFetchCotizacion(
@@ -34,8 +35,8 @@ export default function QuoterAutomotor({
     Number(Plazo),
     version,
     productType,
-    "1",
-    "817"
+    String(productClass),
+    String(product)
   );
 
   //handlers

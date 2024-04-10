@@ -19,7 +19,11 @@ export const ResultToPrint = forwardRef<HTMLElement, State>(
       return null;
     };
     return (
-      <section ref={ref} className="br-24 bg-white mb-3 md:p-4">
+      <section
+        id="ResultToPrint"
+        ref={ref}
+        className="br-24 bg-white mb-3 md:p-4"
+      >
         <ResultToPrintHead />
         <ClientInfo formulario={formulario} />
 

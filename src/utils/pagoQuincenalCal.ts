@@ -1,5 +1,5 @@
 export function calcularPagoQuincenal(monto: number, plazoMensual: number = 12): number {
-    const pagosPorMes = 3; // 2 pagos por mes
+    const pagosPorMes = 2; // 2 pagos por mes
     const totalPagos = monto / plazoMensual;
     const pagoQuincenal = totalPagos / pagosPorMes;
 

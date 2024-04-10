@@ -48,7 +48,7 @@ export function FourthStepContent() {
 
                     <a
                       href="https://bgwp.bgroup.com.ar/"
-                      className="btn btn-primary flex justify-center items-center py-2 px-md-2 w-full md:w-[11.25rem] h-12"
+                      className="btn btn-primary flex justify-center items-center  py-2 px-md-2 w-full md:w-[11.25rem] h-12"
                     >
                       Volver a inicio
                     </a>

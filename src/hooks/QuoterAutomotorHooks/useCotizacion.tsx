@@ -32,7 +32,6 @@ const useFetchCotizacion = (
 
   const incentivosAutos = AutoImplusaResponse.data;
   const incentivos = incentivosAutos?.incentivos;
-  console.log(incentivos);
 
   useEffect(() => {
     const fetchCotizacion = async () => {
@@ -45,7 +44,7 @@ const useFetchCotizacion = (
           maxBodyLength: Infinity,
           url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_monto_auto&modelo=${modelKey}&marca=${brandKey}&ano=${yearKey}&tipo_cliente=A&producto=${product}&plazo=${plazo}&version=${versionKey}&tipo_producto=${productType}&clase_producto=${productClass}`,
         };
-        console.log("URL", config);
+
         const res = await axios.request(config);
         const data = res.data;
         const response = JSON.parse(data);
