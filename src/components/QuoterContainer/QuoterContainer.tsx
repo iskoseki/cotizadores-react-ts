@@ -1,10 +1,11 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { useStore } from "../../context/CotizacionContext";
 
 import Loading from "../Loading";
 
 import QuoterCicle from "../QuoterCicle/QuoterCicle";
-import ThirdStep from "../../routes/thirdStep";
+import ThirdStep from "../../routes/FormPage";
+import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 const QuaterSelector = React.lazy(
   () => import("../QuaterSelector/QuoterSelector")
@@ -15,6 +16,7 @@ const CotizadorDiamantes = React.lazy(() => import("../CotizadorDiamantes"));
 const CotizadorRelojes = React.lazy(() => import("../CotizadorRelojes"));
 
 export default function QuoterContainer() {
+  const scroll = useRef(null);
   const {
     reiniciarEstado,
     showForm,
@@ -23,21 +25,31 @@ export default function QuoterContainer() {
     setCurrentStep,
   } = useStore();
 
+  useSmoothScroll(scroll);
+
+  const quoterMap = {
+    "/cotizacion/alhajas": "Alhajas",
+    "/cotizacion/auto": "Auto",
+    "/cotizacion/relojes": "Relojes",
+    "/cotizacion/diamantes": "Diamantes",
+  };
+
   useEffect(() => {
     reiniciarEstado();
-    // Obtenemos la ruta actual
     const path = window.location.pathname;
-    // Verificamos si la ruta corresponde a alguna de nuestras opciones
-    if (path.includes("/cotizacion/alhajas")) {
-      setSelectedQuoter("Alhajas");
-    } else if (path.includes("/cotizacion/auto")) {
-      setSelectedQuoter("Auto");
-    } else if (path.includes("/cotizacion/relojes")) {
-      setSelectedQuoter("Relojes");
-    } else if (path.includes("/cotizacion/diamantes")) {
-      setSelectedQuoter("Diamantes");
-    }
+    Object.keys(quoterMap).forEach((key) => {
+      if (path.includes(key)) {
+        setSelectedQuoter(quoterMap[key]);
+      }
+    });
   }, [reiniciarEstado, setSelectedQuoter, setCurrentStep]);
+
+  const quoterComponents = {
+    Alhajas: <CotizadorAlhajas />,
+    Auto: <CotizadorAutomotor />,
+    Relojes: <CotizadorRelojes />,
+    Diamantes: <CotizadorDiamantes />,
+  };
 
   return (
     <>
@@ -45,7 +57,7 @@ export default function QuoterContainer() {
         {showForm ? (
           <ThirdStep />
         ) : (
-          <section className="bg-[#f8f8f8] section cotizador ">
+          <section ref={scroll} className="bg-[#f8f8f8] section cotizador ">
             <Suspense fallback={<Loading />}>
               <div className="hidden md:block">
                 <QuoterCicle />
@@ -60,10 +72,7 @@ export default function QuoterContainer() {
                     <div className="d-md-none">
                       <QuoterCicle />
                     </div>
-                    {selectedQuoter === "Alhajas" && <CotizadorAlhajas />}
-                    {selectedQuoter === "Auto" && <CotizadorAutomotor />}
-                    {selectedQuoter === "Relojes" && <CotizadorRelojes />}
-                    {selectedQuoter === "Diamantes" && <CotizadorDiamantes />}
+                    {selectedQuoter && quoterComponents[selectedQuoter]}
                   </div>
                 </div>
               </div>

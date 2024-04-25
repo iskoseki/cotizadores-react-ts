@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import RenegociarAuto from "./RenegociarAuto";
 import { useStore } from "../../context/CotizacionContext";
 import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
 import { useFetch } from "../../hooks/useFetch";
 import { formatCurrency } from "../../utils/formarCurrency";
+import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 export function QuoterResultAuto({ setCotizacionCompletada }) {
   const { cotizacionAutomotor, Monto } = useStore();
   const initAutos = import.meta.env.VITE_INIT_AUTO;
-
   const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
-
+  const miRef = useRef(null);
+  useSmoothScroll(miRef);
   return (
-    <div>
+    <div ref={miRef}>
       <div className="pasos-cotizador my-4 bg-white br-24 p-4">
         <h2 className="text-normal-dos text-dark bold mb-4">
           {Init?.titulo_estimacion_de_prestamo}

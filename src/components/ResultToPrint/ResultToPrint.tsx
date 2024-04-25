@@ -24,10 +24,12 @@ export const ResultToPrint = forwardRef<HTMLElement, State>(
         ref={ref}
         className="br-24 bg-white mb-3 md:p-4"
       >
-        <ResultToPrintHead />
-        <ClientInfo formulario={formulario} />
+        <div id="ResultToPrintBody">
+          <ResultToPrintHead />
+          <ClientInfo formulario={formulario} />
 
-        {resultComponent()}
+          {resultComponent()}
+        </div>
       </section>
     );
   }

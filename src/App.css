@@ -56,9 +56,27 @@
   margin-bottom: 10px;
 }
 
+@media screen and (max-width: 765px) {
+  .print-row-titles{
+    display: none;
+  }
+}
+
 @media print {
+  
+  .print-row-titles{
+    display: none !important;
+  }
+.cotiacion-result-print{
+  height: 400px !important;
+
+}
   #ResultToPrint {
+    position: absolute;
+    top: 0;
+ 
     padding-left: 10px;
     padding-right: 10px;
+ 
   }
 }

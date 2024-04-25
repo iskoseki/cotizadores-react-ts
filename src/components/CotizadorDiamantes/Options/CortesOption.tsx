@@ -21,13 +21,13 @@ export default function Cortes({ data, setCut }: CortesProps) {
     handleTouchEnd,
     handleTouchMove,
   } = useDragMouse(sliderRef);
+
   return (
     <div className="my-1 br-24 p-8 bg-white ">
       <h2 className="text-normal-dos text-dark text-center bold">Corte</h2>
       <hr className="bg-dark my-4" />
       <div className="relative ">
         <button className="xl:hidden absolute left-[-18px] top-[30px]  z-10">
-          {/* Botón de flecha izquierda */}
           <ArrowIconLeft />
         </button>
         <div

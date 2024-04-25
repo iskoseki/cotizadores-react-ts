@@ -15,7 +15,7 @@ export default function CotizadorDiamantes() {
   };
 
   return (
-    <>
+    <div>
       {cotizacionCompletada ? (
         <QuoterResult setCotizacionCompletada={setCotizacionCompletada} />
       ) : (
@@ -24,6 +24,6 @@ export default function CotizadorDiamantes() {
           handleCotizacionCompleta={handleCotizacionCompleta}
         />
       )}
-    </>
+    </div>
   );
 }

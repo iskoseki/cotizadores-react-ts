@@ -18,7 +18,7 @@ export function FourthStepContent() {
   }, []);
   return (
     <Suspense fallback={<Loading />}>
-      <section className="section  " id="inicio">
+      <section className="section" id="inicio">
         <div className="container">
           <div className="d-flex justify-content-center">
             <div className="col-12 col-md-10">

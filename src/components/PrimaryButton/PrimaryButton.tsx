@@ -6,7 +6,6 @@ type PrimaryButton = {
   value?: string;
   title?: string;
   children: React.ReactNode;
-
   fun?: () => void;
 };
 const PrimaryButton = ({

@@ -6,16 +6,16 @@ export default function ClientInfo({ formulario }) {
       <div className="card-body">
         <div className="bold text-normal mb-3">Titular</div>
         <div className="row">
-          <div className="col-12 col-md-6">
+          <div className="col-6 col-md-6">
             <p className="text-uppercase text-[14px] font-bold">Nombre</p>
-            <p className="text-[14px] md:text-[16px] mb-0">
+            <p className="text-[12px] md:text-[16px] mb-0">
               {formulario.First_Name} {""}
               {formulario.Last_Name}
             </p>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-6 col-md-6">
             <p className="text-uppercase text-[14px] font-bold">Mail</p>
-            <p className=" text-[14px] md:text-[16px] mb-0">
+            <p className=" text-[12px] md:text-[16px] mb-0">
               {formulario.Email}
             </p>
           </div>

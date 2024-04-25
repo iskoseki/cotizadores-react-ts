@@ -23,6 +23,11 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
     handleTouchMove,
   } = useDragMouse(sliderRef);
 
+  if (!data) {
+    return <div>No data</div>;
+  }
+  const { cotizador, mostrar_cotizador } = data;
+
   if (isLoading) {
     return <Loading />;
   }
@@ -34,11 +39,7 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
       </div>
     );
   }
-  if (!data) {
-    return <div>No data</div>;
-  }
 
-  const { cotizador, mostrar_cotizador } = data;
   return (
     <div className="br-24 md:bg-white mb-3">
       <div className="py-4 px-8 md:p-4 ">

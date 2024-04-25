@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { CotizacionAuto, incentivos } from "../../types/cotizacionTypes";
+import { CotizacionAuto } from "../../types/cotizacionTypes";
 import { useStore } from "../../context/CotizacionContext";
 import { useFetch } from "../useFetch";
 import { QuoterAutoProps } from "../../components/CotizarAutomotor/QuoterAutoProps";
-import { Response } from "../../components/QuaterSelector/QuaterSelector.types";
 
 const useFetchCotizacion = (
   yearKey: number,

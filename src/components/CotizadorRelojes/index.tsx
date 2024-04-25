@@ -15,7 +15,7 @@ export default function CotizadorRelojes() {
   };
 
   return (
-    <>
+    <div>
       {cotizacionCompletada ? (
         <QuoterResult setCotizacionCompletada={setCotizacionCompletada} />
       ) : (
@@ -24,6 +24,6 @@ export default function CotizadorRelojes() {
           handleCotizacionCompleta={handleCotizacionCompleta}
         />
       )}
-    </>
+    </div>
   );
 }

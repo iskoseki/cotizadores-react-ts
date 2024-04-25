@@ -5,12 +5,14 @@ import { SubmitHandler } from "react-hook-form";
 import { useStore } from "../context/CotizacionContext";
 import { FormValues } from "../types/formTypes";
 import Loading from "../components/Loading";
-import FormAutoImpulsa from "../components/Form/FormAutoImpulsa";
-import { FourthStepContent } from "./fourdStep";
+import { FourthStepContent } from "./TicketPage";
 import ErrorComponent from "../components/ErrorComponent";
 import { useFetch } from "../hooks/useFetch";
-//import axios from "axios";
-
+import {
+  formAutoFields,
+  formFields,
+  headerFormName,
+} from "../components/Form/formFields";
 export default function ThirdStep() {
   const {
     guardarFormulario,
@@ -29,7 +31,6 @@ export default function ThirdStep() {
     titulo_ingresa_tus_datos: string;
     texto_ingresa_tus_datos: string;
   }
-  // Agrega un nuevo estado para manejar el error
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { data } = useFetch<SetForm>(
@@ -39,38 +40,37 @@ export default function ThirdStep() {
     window.scrollTo(0, 0);
     setCurrentStep(2);
   }, [setCurrentStep]);
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setLoading(true);
     try {
       startTransition(() => guardarFormulario(data));
       const postData = {
-        ...data, // Los datos del formulario
+        ...data,
         cotizacion:
-          selectedQuoter === "Automotor" ? cotizacionAutomotoFinal : cotizacion, // Añade cotizacion o cotizacionAutomotor dependiendo del formulario seleccionado
+          selectedQuoter === "Automotor" ? cotizacionAutomotoFinal : cotizacion,
       };
+
       const response = await fetch("https://crm.zoho.com/crm/WebToLeadForm", {
         method: "POST",
         body: JSON.stringify(postData),
       });
 
+      if (response.ok) {
+        console.log(`Cita enviada con exito, status:${response.status}`);
+      }
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      console.log(
-        response.status,
-        response.statusText,
-        response.headers,
-        postData
-      );
       setLoading(false);
       SetCotizacionStatus(true);
     } catch (error) {
       console.error(
         "There has been a problem with your fetch operation:",
-        error
+        error.message
       );
-      // Si hay un error, establece el estado de error
+
       setError(error);
       setLoading(false);
     }
@@ -79,13 +79,12 @@ export default function ThirdStep() {
   useEffect(() => {
     setCurrentStep(2);
   }, [setCurrentStep]);
+
   return (
     <div className="bg-[#f8f8f8]">
       {loading ? (
-        // Si está cargando, muestra el componente de carga
         <Loading />
       ) : error ? (
-        // Si hay un error, muestra el componente de error
         <ErrorComponent error={error} />
       ) : CotizacionStatus ? (
         <FourthStepContent />
@@ -107,10 +106,18 @@ export default function ThirdStep() {
                         {data?.texto_ingresa_tus_datos}
                       </p>
                       <Suspense fallback={<Loading />}>
-                        {selectedQuoter === "Automotor" ? (
-                          <FormAutoImpulsa onSubmit={onSubmit} />
+                        {selectedQuoter === "Auto" ? (
+                          <Form
+                            formName={headerFormName.autoFormName}
+                            formFields={formAutoFields}
+                            onSubmit={onSubmit}
+                          />
                         ) : (
-                          <Form onSubmit={onSubmit} />
+                          <Form
+                            formName={headerFormName.quoterFormName}
+                            formFields={formFields}
+                            onSubmit={onSubmit}
+                          />
                         )}
                       </Suspense>
                     </div>

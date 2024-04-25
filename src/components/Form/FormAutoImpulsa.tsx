@@ -64,7 +64,7 @@ export default function FormAutoImpulsa({
                   message: "El nombre debe tener al menos 3 caracteres",
                 },
                 pattern: {
-                  value: /^[A-Za-z]+$/i,
+                  value: /^[A-Za-z\sáéíóúÁÉÍÓÚ]+$/i,
                   message: "Solo se permiten letras en este campo",
                 },
               })}
@@ -90,7 +90,7 @@ export default function FormAutoImpulsa({
               {...register("Last_Name", {
                 required: "Este campo es requerido",
                 pattern: {
-                  value: /^[A-Za-z]+$/i,
+                  value: /^[A-Za-z\sáéíóúÁÉÍÓÚ]+$/i,
                   message: "Solo se permiten letras en este campo",
                 },
               })}

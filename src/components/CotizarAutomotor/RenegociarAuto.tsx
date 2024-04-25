@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { calcularPagoQuincenal } from "../../utils/pagoQuincenalCal";
 import { formatCurrency } from "../../utils/formarCurrency";
 import CurrencyInput from "react-currency-input-field";
+import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 export default function RenegociarAuto({ setCotizacionCompletada }) {
   const {
@@ -15,6 +16,9 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
     setShowForm,
   } = useStore();
   const { Prestamo } = cotizacionAutomotor;
+  const [inputMonto, setInputMonto] = useState<number>(0);
+
+  const [error, setError] = useState<string | null>();
 
   useEffect(() => {
     if ((Monto && Monto > Prestamo) || (Monto && Monto < 20000)) {
@@ -22,11 +26,10 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
     }
   }, [Prestamo, guardarMonto, Monto]);
 
-  const [inputMonto, setInputMonto] = useState<number>(0);
-  const [inputMontoState, setInputMontoState] = useState<boolean>(false);
-
-  const [error, setError] = useState<string | null>();
-
+  useEffect(() => {
+    handleMontoChange(Prestamo);
+    setInputMonto(Prestamo);
+  }, []);
   const handleMontoChange = (monto: number) => {
     let newMonto = monto;
     let errorMessage = "";
@@ -50,7 +53,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
 
   const disableButton = () => {
     if (
-      (inputMonto && inputMonto >= Prestamo) ||
+      (inputMonto && inputMonto > Prestamo) ||
       (inputMonto && inputMonto < 20000)
     ) {
       return true;
@@ -80,7 +83,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
               id="input-example"
               name="input-name"
               placeholder="Por favor ingresa un número"
-              defaultValue={0}
+              defaultValue={Prestamo}
               decimalsLimit={2}
               max={Prestamo}
               intlConfig={{ locale: "es-MX", currency: "MXN" }}
