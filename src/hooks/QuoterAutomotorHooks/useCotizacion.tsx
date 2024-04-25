@@ -4,6 +4,7 @@ import { CotizacionAuto } from "../../types/cotizacionTypes";
 import { useStore } from "../../context/CotizacionContext";
 import { useFetch } from "../useFetch";
 import { QuoterAutoProps } from "../../components/CotizarAutomotor/QuoterAutoProps";
+import createApiUrl from "../../utils/creatApiUrl";
 
 const useFetchCotizacion = (
   yearKey: number,
@@ -26,7 +27,7 @@ const useFetchCotizacion = (
     (state) => state.guardarCotizacionAutos
   );
   const AutoImplusaResponse = useFetch<QuoterAutoProps>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/74"
+    createApiUrl("/wp-json/acf/v3/pages/74")
   );
 
   const incentivosAutos = AutoImplusaResponse.data;
@@ -41,7 +42,9 @@ const useFetchCotizacion = (
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_monto_auto&modelo=${modelKey}&marca=${brandKey}&ano=${yearKey}&tipo_cliente=A&producto=${product}&plazo=${plazo}&version=${versionKey}&tipo_producto=${productType}&clase_producto=${productClass}`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_monto_auto&modelo=${modelKey}&marca=${brandKey}&ano=${yearKey}&tipo_cliente=A&producto=${product}&plazo=${plazo}&version=${versionKey}&tipo_producto=${productType}&clase_producto=${productClass}`
+          ),
         };
 
         const res = await axios.request(config);

@@ -4,14 +4,17 @@ import { QuaterSelectorProps, Response } from "./QuaterSelector.types";
 import Loading from "../../components/Loading";
 import { QuoterItem } from "./QuoterItem";
 import { useDragMouse } from "../../hooks/useMauseDrag";
+import createApiUrl from "../../utils/creatApiUrl";
 
 const QuaterSelector: React.FC<QuaterSelectorProps> = ({
   setSelectedQuoter,
   selectedQuoter,
 }) => {
   const initCotizadoresUrl = import.meta.env.VITE_INIT_COTIZADORES;
-  const { data, error, isLoading } = useFetch<Response>(initCotizadoresUrl);
-  //const sliderRef = useRef<HTMLDivElement>(null);
+  const createCotizadoresUrl: string = createApiUrl(initCotizadoresUrl);
+
+  const { data, error, isLoading } = useFetch<Response>(createCotizadoresUrl);
+
   const sliderRef: RefObject<HTMLUListElement> = useRef(null);
   const {
     handleMouseDown,

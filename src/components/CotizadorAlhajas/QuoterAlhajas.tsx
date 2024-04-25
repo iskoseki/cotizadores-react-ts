@@ -7,6 +7,7 @@ import Loading from "../Loading";
 import { fetchDataAlhajas } from "../../api/getQuoterAlhajas";
 import { useStore } from "../../context/CotizacionContext";
 import toast, { Toaster } from "react-hot-toast";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export default function QuoterAlhajas({
   setCotizacionCompletada,
@@ -17,10 +18,10 @@ export default function QuoterAlhajas({
   const { guardarCotizacion } = useStore();
   const [loading, setLoading] = useState(false);
   const initAlhajasUrl = import.meta.env.VITE_INIT_ALHAJAS;
+  const createAlhajasUrl: string = createApiUrl(initAlhajasUrl);
   const notify = () => toast.error("Por favor, rellene todos los campos");
-
   const { error, isLoading, data } =
-    useFetch<QuoterAlhajasProps>(initAlhajasUrl);
+    useFetch<QuoterAlhajasProps>(createAlhajasUrl);
 
   if (isLoading) {
     return <Loading height={180} />;

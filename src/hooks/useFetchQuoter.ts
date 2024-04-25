@@ -1,4 +1,5 @@
 import { startTransition, useEffect, useState } from "react";
+import createApiUrl from "../utils/creatApiUrl";
 
 export const useFetchQuoters = () => {
   const [data, setData] = useState<Response | null>(null);
@@ -9,7 +10,8 @@ export const useFetchQuoters = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/28");
+        
+        const response = await fetch(createApiUrl("/wp-json/acf/v3/pages/28"));
         const jsonData = await response.json();
           startTransition(() => { setData(jsonData);})
       } catch (error) {

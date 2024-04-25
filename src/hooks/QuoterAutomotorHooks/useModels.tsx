@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import createApiUrl from "../../utils/creatApiUrl";
 
 interface ModelData {
-  // Add properties for the expected data structure from the response
   claveModelo: number;
-  // ... other properties
 }
 
 export const useFetchModels = (
@@ -28,7 +27,9 @@ export const useFetchModels = (
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_modelos&ano=${year}&marca=${brand}`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_modelos&ano=${year}&marca=${brand}`
+          ),
         };
 
         const response = await axios.request(config);

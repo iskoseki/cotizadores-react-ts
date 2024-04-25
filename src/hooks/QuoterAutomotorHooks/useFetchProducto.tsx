@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import createApiUrl from "../../utils/creatApiUrl";
 
 interface Data {
   PlazoMaximo: number;
@@ -35,7 +36,9 @@ export const useFetchProduct = (): {
         const config: AxiosRequestConfig = {
           method: "get",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_productos`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_productos`
+          ),
         };
 
         const response = await axios.request(config);

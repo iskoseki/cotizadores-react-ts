@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import createApiUrl from "../../utils/creatApiUrl";
 
 interface Data {
   meta: null;
@@ -31,7 +32,9 @@ export const useFetchYears = (): {
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_anios`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_anios`
+          ),
         };
 
         const response = await axios.request(config);

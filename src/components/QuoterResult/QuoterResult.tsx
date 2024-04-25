@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useStore } from "../../context/CotizacionContext";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import OutlineButton from "../OutlineButton/OutlineButton";

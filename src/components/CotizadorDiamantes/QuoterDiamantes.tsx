@@ -8,6 +8,7 @@ import { fetchDataDiamantes } from "../../api/getQuoterDiamantes";
 
 import Loading from "../Loading";
 import toast, { Toaster } from "react-hot-toast";
+import createApiUrl from "../../utils/creatApiUrl";
 
 const QuoterDiamantes = ({
   setCotizacionCompletada,
@@ -22,7 +23,8 @@ const QuoterDiamantes = ({
   const notify = () =>
     toast.error("Por favor, seleccione todos los campos para cotizar.");
   const initDiamantesUrl = import.meta.env.VITE_INIT_DIAMANTES;
-  const DiamantesResponse = useFetch<QuoterDiamantesProps>(initDiamantesUrl);
+  const createDiamanteUrl: string = createApiUrl(initDiamantesUrl);
+  const DiamantesResponse = useFetch<QuoterDiamantesProps>(createDiamanteUrl);
   const data = DiamantesResponse.data;
   const { error, isLoading } = DiamantesResponse;
   if (isLoading) {

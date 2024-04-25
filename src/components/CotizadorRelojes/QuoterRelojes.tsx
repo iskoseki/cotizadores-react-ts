@@ -6,6 +6,7 @@ import Loading from "../Loading";
 import { useStore } from "../../context/CotizacionContext";
 import { fetchDataRelojes } from "../../api/getQuoterRelojes";
 import CurrencyInput from "react-currency-input-field";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export default function QuoterRelojes({
   setCotizacionCompletada,
@@ -16,9 +17,10 @@ export default function QuoterRelojes({
   const { guardarCotizacion } = useStore();
   const [loading, setLoading] = useState(false);
   const initRelojesUrl = import.meta.env.VITE_INIT_RELOJES;
+  const createRelojesUrl: string = createApiUrl(initRelojesUrl);
   const notify = () => toast.error("Por favor, rellene todos los campos");
 
-  const RelojesResponse = useFetch<QuoterAlhajasProps>(initRelojesUrl);
+  const RelojesResponse = useFetch<QuoterAlhajasProps>(createRelojesUrl);
   const data = RelojesResponse.data;
   const { error, isLoading } = RelojesResponse;
   if (isLoading) {

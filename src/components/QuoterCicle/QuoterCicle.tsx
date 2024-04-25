@@ -3,14 +3,13 @@ import { Response } from "../QuaterSelector/QuaterSelector.types";
 import { useFetch } from "../../hooks/useFetch";
 import NumberCicle from "./NumberCicle";
 import { useStore } from "../../context/CotizacionContext";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export default function QuoterCicle() {
   const [paso1Completado, setPaso1Completado] = useState(false);
   const [paso2Completado, setPaso2Completado] = useState(false);
   const { CurrentStep } = useStore();
-  const { data } = useFetch<Response>(
-    "https://bgwp.bgroup.com.ar/wp-json/acf/v3/pages/28"
-  );
+  const { data } = useFetch<Response>(createApiUrl("/wp-json/acf/v3/pages/28"));
 
   useEffect(() => {
     const updateSteps = () => {

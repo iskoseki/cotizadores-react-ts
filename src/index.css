@@ -1,4 +1,3 @@
-@import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 #cotizadores-react-component .leaflet-container {
@@ -690,64 +689,6 @@ ul li .texto.active {
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-  .text-small {
-    font-size: 0.7rem;
-    line-height: 1.4rem;
-  }
-
-  .text-normal {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .text-normal-dos {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-  }
-
-  .text-big {
-    font-size: 2.8rem;
-    line-height: 3.1rem;
-  }
-
-  .text-ultra-big {
-    font-size: 2rem;
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width: 1401px) and (max-width: 1600px) {
-  .text-small {
-    font-size: 0.7rem;
-    line-height: 1.4rem;
-  }
-
-  .text-normal {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .text-normal-dos {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-  }
-
-  .text-big {
-    font-size: 2.8rem;
-    line-height: 3.1rem;
-  }
-
-  .text-ultra-big {
-    font-size: 2.3rem;
-    line-height: 2.7rem;
-  }
-
-  .text-parallax {
-    width: 50%;
-  }
-}
-
 .label-container {
   position: fixed;
   bottom: 48px;
@@ -778,53 +719,6 @@ ul li .texto.active {
   vertical-align: middle;
   color: #333;
   opacity: 0.5;
-}
-
-.float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  box-shadow: 2px 2px 7px #000;
-  animation: bot-to-top 2s ease-out;
-}
-
-.float-borrar {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 110px;
-  right: 40px;
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  box-shadow: 2px 2px 7px #000;
-  animation: bot-to-top 2s ease-out;
-}
-
-.float-categorias {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 180px;
-  right: 40px;
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  box-shadow: 2px 2px 7px #000;
-  animation: bot-to-top 2s ease-out;
-}
-
-.my-float {
-  font-size: 24px;
-  margin-top: 18px;
 }
 
 a.float + div.label-container {

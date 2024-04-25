@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
-
+import createApiUrl from "../../utils/creatApiUrl";
 interface BrandData {
-  // Add properties for the expected data structure from the response
   claveMarca: number;
-  // ... other properties
 }
 
 const useFetchBrands = (
@@ -27,7 +25,9 @@ const useFetchBrands = (
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_marcas&ano=${year}`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_marcas&ano=${year}`
+          ),
         };
 
         const response = await axios.request(config);

@@ -8,6 +8,7 @@ import useCotizacionStore from "../../context/cotizacionAutoStore";
 import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "../../context/CotizacionContext";
 import { formatCurrency } from "../../utils/formarCurrency";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export default function QuoterAutomotor({
   setCotizacionCompletada,
@@ -15,15 +16,14 @@ export default function QuoterAutomotor({
 }: QuoterAutoProps) {
   const notify = () => toast.error("Por favor, rellene todos los campos");
   const initAutos = import.meta.env.VITE_INIT_AUTO;
+  const createAutosUrl: string = createApiUrl(initAutos);
 
-  //initial fetch data
   const {
     data: Init,
     error: InitError,
     isLoading: InitIsLoading,
-  } = useFetch<QuoterAutoProps>(initAutos);
+  } = useFetch<QuoterAutoProps>(createAutosUrl);
 
-  //states
   const { year, brand, models, version, productType, product, productClass } =
     useCotizacionStore();
   const { Plazo } = useStore();
@@ -39,7 +39,6 @@ export default function QuoterAutomotor({
     String(product)
   );
 
-  //handlers
   if (InitIsLoading) {
     return <Loading />;
   }

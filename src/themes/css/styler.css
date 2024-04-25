@@ -691,33 +691,6 @@ ul li .texto.active {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
-  .text-small {
-    font-size: 0.7rem;
-    line-height: 1.4rem;
-  }
-
-  .text-normal {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .text-normal-dos {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-  }
-
-  .text-big {
-    font-size: 2.8rem;
-    line-height: 3.1rem;
-  }
-
-  .text-ultra-big {
-    font-size: 2rem;
-    line-height: 2.5rem;
-  }
-}
-
 @media (min-width: 1200px) and (max-width: 1400px) {
   .text-small {
     font-size: 0.7rem;
@@ -950,19 +923,4 @@ a#logo #potenc {
   border-radius: 40px;
   width: 40px;
   height: 40px;
-}
-
-.video-thumbnail:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  content: "\f144";
-  font-family: "Font Awesome 5 Brands";
-  font-size: 100px;
-  color: #fff;
-  opacity: 0.8;
-  text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
-}
-.video-thumbnail:hover:before {
-  color: #eee;
 }

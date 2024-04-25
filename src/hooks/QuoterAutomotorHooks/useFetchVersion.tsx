@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import createApiUrl from "../../utils/creatApiUrl";
 
 interface VersionData {
   claveVersion: number;
@@ -27,7 +28,9 @@ const useFetchVersion = (
         const config: AxiosRequestConfig = {
           method: "post",
           maxBodyLength: Infinity,
-          url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_versiones&ano=${year}&marca=${brand}&modelo=${model}`,
+          url: createApiUrl(
+            `/wp-admin/admin-ajax.php?action=montepio_get_versiones&ano=${year}&marca=${brand}&modelo=${model}`
+          ),
         };
 
         const response = await axios.request(config);

@@ -3,6 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
 
 import Loading from "../Loading";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export interface acordeon {
   icono: string;
@@ -11,12 +12,13 @@ export interface acordeon {
 }
 export default function Requirements() {
   const initAutos = import.meta.env.VITE_INIT_AUTO;
+  const createAutosUrl: string = createApiUrl(initAutos);
 
   const {
     data: Init,
     error: InitError,
     isLoading: InitIsLoading,
-  } = useFetch<QuoterAutoProps>(initAutos);
+  } = useFetch<QuoterAutoProps>(createAutosUrl);
 
   if (InitIsLoading) {
     return <Loading />;
