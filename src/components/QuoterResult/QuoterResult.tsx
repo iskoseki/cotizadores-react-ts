@@ -6,6 +6,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
 import { formatCurrency } from "../../utils/formarCurrency";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
+import createApiUrl from "../../utils/creatApiUrl";
 
 export const ResultValues = () => {
   const { cotizacion } = useStore();
@@ -91,7 +92,8 @@ export const ResultValues = () => {
 export function QuoterResult({ setCotizacionCompletada }) {
   const { setShowForm } = useStore();
   const initAutos = import.meta.env.VITE_INIT_AUTO;
-  const { data: Init } = useFetch<QuoterAutoProps>(initAutos);
+
+  const { data: Init } = useFetch<QuoterAutoProps>(createApiUrl(initAutos));
   const toScroll = useRef(null);
   useSmoothScroll(toScroll);
   return (
