@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { calcularPagoQuincenal } from "../../utils/pagoQuincenalCal";
 import { formatCurrency } from "../../utils/formarCurrency";
 import CurrencyInput from "react-currency-input-field";
-import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 export default function RenegociarAuto({ setCotizacionCompletada }) {
   const {
@@ -19,7 +18,6 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
   const [inputMonto, setInputMonto] = useState<number>(0);
 
   const [error, setError] = useState<string | null>();
-
   useEffect(() => {
     if ((Monto && Monto > Prestamo) || (Monto && Monto < 20000)) {
       guardarMonto(Prestamo);

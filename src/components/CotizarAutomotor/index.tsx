@@ -7,7 +7,7 @@ export default function CotizadorAutomotor() {
   const [cotizacionCompletada, setCotizacionCompletada] = useState(false);
 
   return (
-    <div>
+    <>
       {cotizacionCompletada ? (
         <QuoterResultAuto setCotizacionCompletada={setCotizacionCompletada} />
       ) : (
@@ -15,6 +15,6 @@ export default function CotizadorAutomotor() {
           <OptionsAutomotor />
         </QuoterAutomotor>
       )}
-    </div>
+    </>
   );
 }
