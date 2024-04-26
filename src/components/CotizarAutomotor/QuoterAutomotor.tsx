@@ -14,9 +14,9 @@ export default function QuoterAutomotor({
   setCotizacionCompletada,
   children,
 }: QuoterAutoProps) {
-  const notify = () => toast.error("Por favor, rellene todos los campos");
   const initAutos = import.meta.env.VITE_INIT_AUTO;
   const createAutosUrl: string = createApiUrl(initAutos);
+  const notify = () => toast.error("Por favor, rellene todos los campos");
 
   const {
     data: Init,

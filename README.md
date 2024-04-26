@@ -1,30 +1,125 @@
-# Tech stack: React + TypeScript + Vite
+# Cotizadores component for Montepío Luz Saviñón
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un componente React personalizado, fue creado para ser integrado en un sitio Wordpress.
 
-Currently, two official plugins are available:
+El componente utiliza diferentes funcionalidades obtenidas del servicio de [Google maps API](https://developers.google.com/maps/documentation). Fue pensado para integrarse en un sitio Wordpress, con la finalidad de mostrar las tiendas "Montepío Luz Saviñón" cercanas al usuario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+#### **Installation**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```
+npm install 
+or 
+//install
+pnpm install
 
-- Configure the top-level `parserOptions` property like this:
+//development
+pnpm run dev
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+//Build 
+pnpm run build
+
+//Preview build 
+pnpm run preview
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Estructura del proyecto
+
+Estructura del proyecto con los modulos principales.
+
+* `src/`
+
+  * `api/`: Peticiones al wordpress api.
+  * `assets/`: Carpeta para recursos (fonts/images)
+  * `components/`: Carpeta de componentes personalizados.
+    * `/CotizadorAlhajas`: Cotizador de Autoimpulsa.
+      * `Options/`: Componentes de opciones para el cotizador.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `index.tsx`: Punto de entrada del componente autoimpulsa.
+    * `/CotizadorDiamantes`: Cotizador de Autoimpulsa.
+      * `Options/`: Componentes de opciones para el cotizador.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `index.tsx`: Punto de entrada del componente autoimpulsa.
+    * `/CotizadorRelojes`: Cotizador de Autoimpulsa.
+      * `Options/`: Componentes de opciones para el cotizador.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `index.tsx`: Punto de entrada del componente autoimpulsa.
+    * `/CotizadorDiamantes`: Cotizador de Autoimpulsa.
+      * `Options/`: Componentes de opciones para el cotizador.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `index.tsx`: Punto de entrada del componente autoimpulsa.
+    * `/CotizadorAutomotor`: Cotizador de Autoimpulsa.
+      * `Options/`: Componentes de opciones para el cotizador.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `index.tsx`: Punto de entrada del componente autoimpulsa.
+      * `HeaderSede/`
+        * `HeaderSede.tsx`: Render del titulo definido desde wordpress.
+    * `/Form`: Manejo de formulario.
+      * `FormOptions/`: Componentes de opciones para el formulario.
+        * `BrandOption.tsx`
+        * `ModelOption.tsx`
+        * `ProductOption.tsx`
+        * `VersionOption.tsx`
+        * `YearOption.tsx`
+        * `OptionsAutomotor.tsx`: Devuelve un Row con todos las opciones.
+      * `FieldProps.tsx`: Punto de entrada del componente autoimpulsa.
+      * `Form.tsx`: Punto de entrada del componente autoimpulsa.
+      * `formFields.tsx`: Punto de entrada del componente autoimpulsa.
+      * `HeaderSede/`
+        * `HeaderSede.tsx`: Render del titulo definido desde wordpress.
+  * `utils/`: Carpeta para funciones de utilidad.
+  * `routes/`: Carpeta de paginas. (contiene los pasos de Formulario y de impresion de Ticket)
+  * `hooks/`: Custom hook folder.
+  * `types/`: Custom interfaces/types declarados para Typescript.
+  * `App.js`: Punto de entrada de la aplicación.
+
+## Funcionalidades
+
+* Consulta Geolocación al usuario para buscar las sucursales cercanas segun su ubicacion actual.
+  ```
+  //Por default la ubicacion será de Ciudad de México.
+  const defaultLocation = { lat: 19.43534430248748, lng: -99.13470289762083 };
+  ```
+* Búsqueda de Tiendas: Implementa una barra de búsqueda para que los usuarios encuentren tiendas cercanas en México, buscando por:
+  * Dirección.
+  * Código postal.
+  * Ciudad/Localidad/Pueblo/ect...
+* Marcadores Personalizados: Agrega marcadores para cada tienda en el mapa.
+* Información Detallada: Muestra detalles relevantes de las tiendas al hacer clic en los marcadores. (Nombre, Direccion, link de re-direct a google maps)
+
+## Util links & resources
+
+[Zustand for state management](https://github.com/pmndrs/zustand)
+[Axios as HTTP client](https://axios-http.com/)
+[react-to-print for print managment](https://github.com/MatthewHerbst/react-to-print#readme)
+[Maps JavaScript API ](https://developers.google.com/maps/documentation/javascript)
+
+[react-geocode](https://www.npmjs.com/package/react-geocode)
+
+[use-places-autocomplete](https://www.npmjs.com/package/use-places-autocomplete)

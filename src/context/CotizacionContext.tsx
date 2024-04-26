@@ -105,7 +105,6 @@ type Store = State & {
   reiniciarEstado: () => void;
 };
 
-// Creo el store
 export const useStore = create<Store>((set) => ({
   ...initialState,
   setCurrentStep: (CurrentStep) => set(() => ({ CurrentStep })),

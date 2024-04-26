@@ -18,6 +18,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
   const [inputMonto, setInputMonto] = useState<number>(0);
 
   const [error, setError] = useState<string | null>();
+
   useEffect(() => {
     if ((Monto && Monto > Prestamo) || (Monto && Monto < 20000)) {
       guardarMonto(Prestamo);
@@ -28,6 +29,7 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
     handleMontoChange(Prestamo);
     setInputMonto(Prestamo);
   }, []);
+
   const handleMontoChange = (monto: number) => {
     let newMonto = monto;
     let errorMessage = "";
@@ -44,8 +46,8 @@ export default function RenegociarAuto({ setCotizacionCompletada }) {
     guardarPlazoQuincenal(newPlazo);
     setError(errorMessage);
   };
+
   const handleButtonClick = () => {
-    // Lógica para modificar el estado
     setCotizacionCompletada(false);
   };
 

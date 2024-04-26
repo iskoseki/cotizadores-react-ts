@@ -4,12 +4,8 @@ import { QuoterAutoProps } from "../CotizarAutomotor/QuoterAutoProps";
 
 import Loading from "../Loading";
 import createApiUrl from "../../utils/creatApiUrl";
+import { acordeon } from "./requirementsType";
 
-export interface acordeon {
-  icono: string;
-  titulo: string;
-  contenido: string;
-}
 export default function Requirements() {
   const initAutos = import.meta.env.VITE_INIT_AUTO;
   const createAutosUrl: string = createApiUrl(initAutos);

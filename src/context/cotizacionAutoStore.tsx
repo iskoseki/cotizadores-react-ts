@@ -9,7 +9,6 @@ interface CotizacionState {
   productClass?: string;
   product?: string;
 
-  // Add any other state variables you need
   setYear: (newYear: string) => void;
   setBrand: (newBrand: string) => void;
   setModels: (newModels: string) => void;
@@ -17,7 +16,6 @@ interface CotizacionState {
   setProductType: (newProductType: string) => void;
   setProductClass: (newProductClass: string) => void;
   setProduct: (newProduct: string) => void;
-  // Add setters for other state variables
 }
 
 const initialState: CotizacionState = {
