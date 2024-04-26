@@ -2,7 +2,11 @@
 
 Este es un componente React personalizado, fue creado para ser integrado en un sitio Wordpress.
 
-El componente utiliza diferentes funcionalidades obtenidas del servicio de [Google maps API](https://developers.google.com/maps/documentation). Fue pensado para integrarse en un sitio Wordpress, con la finalidad de mostrar las tiendas "Montepío Luz Saviñón" cercanas al usuario.
+El componente cuenta de tres pasos. 
+
+1. Elegir un cotizador de los 4 disponibles (Alhajas, Relojes, Diamantes y Auto)
+2. Llenar un formulario para agendar una cita con un asesor.
+3. Pantalla de final, donde veras reflejada tu cotizacion junto con tus datos de contacto. (Los cuales podrás imprimir o descargar en formato .pdf)
 
 ---
 
@@ -101,25 +105,16 @@ Estructura del proyecto con los modulos principales.
 
 ## Funcionalidades
 
-* Consulta Geolocación al usuario para buscar las sucursales cercanas segun su ubicacion actual.
-  ```
-  //Por default la ubicacion será de Ciudad de México.
-  const defaultLocation = { lat: 19.43534430248748, lng: -99.13470289762083 };
-  ```
-* Búsqueda de Tiendas: Implementa una barra de búsqueda para que los usuarios encuentren tiendas cercanas en México, buscando por:
-  * Dirección.
-  * Código postal.
-  * Ciudad/Localidad/Pueblo/ect...
-* Marcadores Personalizados: Agrega marcadores para cada tienda en el mapa.
-* Información Detallada: Muestra detalles relevantes de las tiendas al hacer clic en los marcadores. (Nombre, Direccion, link de re-direct a google maps)
+* Podes elegir entre 4 tipos de cotizadores. (Alhajas, Relojes, Automotor y Diamantes).
+* Cada cotizador te dejará ajustar los parametros segun lo necesites, con los montos que se ajusten a tu consulta.
+* Luego de hacer tu cotizacion, podes agendar una Cita con un vendedor.
+* Al finalizar el proceso tendras tu cita agendada, junto con un resumen de los datos de contacto y cotizacion realizados. El cual puedes imprimir o descargar en formato pdf.
 
-## Util links & resources
+## links & resources
 
 [Zustand for state management](https://github.com/pmndrs/zustand)
 [Axios as HTTP client](https://axios-http.com/)
 [react-to-print for print managment](https://github.com/MatthewHerbst/react-to-print#readme)
 [Maps JavaScript API ](https://developers.google.com/maps/documentation/javascript)
-
 [react-geocode](https://www.npmjs.com/package/react-geocode)
-
 [use-places-autocomplete](https://www.npmjs.com/package/use-places-autocomplete)
