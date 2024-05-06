@@ -8,6 +8,7 @@ import ClientInfo from "./ClientInfo";
 
 export const ResultToPrint = forwardRef<HTMLElement, State>(
   ({ formulario }: State, ref) => {
+    //console.log("FORMULARIO", formulario);
     const { cotizacion, Monto } = useStore();
 
     const resultComponent = () => {

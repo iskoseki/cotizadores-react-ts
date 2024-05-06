@@ -1,5 +1,6 @@
 // api.ts
 import axios, { AxiosRequestConfig } from 'axios';
+import createApiUrl from '../utils/creatApiUrl';
 export const fetchDataDiamantes = async ( size: number, quantity: number, clarity: string, color:string ,cut:string) => {
 
  const encodedClarity = encodeURIComponent(clarity);
@@ -9,7 +10,7 @@ export const fetchDataDiamantes = async ( size: number, quantity: number, clarit
  const config: AxiosRequestConfig = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_diamantes&tamano=${size}&cantidad=${quantity}&id_web_claridad=${encodedClarity}&id_web_color=${encodedColor}&id_web_corte=${encodedCut}`
+    url: createApiUrl(`/wp-admin/admin-ajax.php?action=montepio_get_diamantes&tamano=${size}&cantidad=${quantity}&id_web_claridad=${encodedClarity}&id_web_color=${encodedColor}&id_web_corte=${encodedCut}`)
   };
   try {
     const response = await axios.request(config);

@@ -1,8 +1,5 @@
 import { FieldProps, HeaderFormName } from "./FieldProps";
-import { HiddenInput } from "./FormOptions/HiddenInput";
-import { Input } from "./FormOptions/Input";
-import { Select } from "./FormOptions/Select";
-
+import { HiddenInput, Input, Select } from "./FormOptions";
 export const headerFormName: HeaderFormName = {
   autoFormName: "WebToLeads5591635000004669005",
   quoterFormName: "WebToLeads5591635000004669139",
@@ -108,6 +105,7 @@ export const formFields: FieldProps[] = [
     errorMessage: "Este campo es requerido.",
   },
 ];
+
 export const formAutoFields: FieldProps[] = [
   {
     component: HiddenInput,

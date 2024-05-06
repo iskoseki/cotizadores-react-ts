@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import createApiUrl from '../utils/creatApiUrl';
 
 export const fetchDataRelojes = async (value: number, brand: string) => {
   const encodedBrand = encodeURIComponent(brand);
@@ -6,7 +7,7 @@ export const fetchDataRelojes = async (value: number, brand: string) => {
   const config: AxiosRequestConfig = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `https://bgwp.bgroup.com.ar/wp-admin/admin-ajax.php?action=montepio_get_relojes&valor=${value}&marca=${encodedBrand}`,
+    url: createApiUrl(`/wp-admin/admin-ajax.php?action=montepio_get_relojes&valor=${value}&marca=${encodedBrand}`),
   };
 
   try {

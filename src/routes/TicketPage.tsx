@@ -3,6 +3,7 @@ import { ResultToPrint } from "../components/ResultToPrint/ResultToPrint";
 import { useReactToPrint } from "react-to-print";
 import Loading from "../components/Loading";
 import { useStore } from "../context/CotizacionContext";
+import createApiUrl from "../utils/creatApiUrl";
 
 export function FourthStepContent() {
   const { cotizacion, cotizacionAutomotor, formulario, sucursal } = useStore();
@@ -34,7 +35,7 @@ export function FourthStepContent() {
                   />
                   <div className="flex flex-wrap gap-2 justify-content-center justify-content-md-end">
                     <a
-                      href="https://bgwp.bgroup.com.ar/sucursales/"
+                      href={createApiUrl("/sucursales/")}
                       className="btn btn-outline-dark flex justify-center items-center  py-2 px-md-2 w-full md:w-[12.25rem] h-12 "
                     >
                       Encuentra tu sucursal
@@ -47,7 +48,7 @@ export function FourthStepContent() {
                     </button>
 
                     <a
-                      href="https://bgwp.bgroup.com.ar/"
+                      href={createApiUrl("")}
                       className="btn btn-primary flex justify-center items-center  py-2 px-md-2 w-full md:w-[11.25rem] h-12"
                     >
                       Volver a inicio
