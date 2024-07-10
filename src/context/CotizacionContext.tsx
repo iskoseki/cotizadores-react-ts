@@ -4,7 +4,6 @@ import {
   CotizacionAuto,
   RenegociarAuto,
 } from "../types/cotizacionTypes";
-import { Sede } from "../types/branchTypes";
 import { FormValues } from "../types/formTypes";
 
 // Defino el estado inicial
@@ -15,6 +14,23 @@ const initialState: State = {
   Monto: 0,
   Plazo: 12,
   PlazoQuincenal: 0,
+  datosCotizador: {
+    alhajas: {
+      peso: 0,
+      material: "",
+    },
+    diamantes: {
+      size: 0,
+      quantity: 0,
+      clarity: "",
+      color: "",
+      cut: "",
+    },
+    relojes: {
+      brand: "",
+      price: 0,
+    },
+  },
   cotizacion: [
     {
       PrestamoMaximo: 0,
@@ -32,28 +48,6 @@ const initialState: State = {
     Plazo: 0,
     PlazoQuincenal: 0,
   },
-
-  sucursal: {
-    coordinates: { lat: 0, lng: 0 },
-    Estatus: "",
-    Ramos: "",
-    TipoSucursal: "",
-    Correo: "",
-    HorarioD: "",
-    HorarioS: "",
-    HorarioLV: "",
-    Telefono2: "",
-    Telefono1: "",
-    Calle: "",
-    Numero: "",
-    Colonia: "",
-    Municipio: "",
-    Estado: "",
-    CP: "",
-    NumZona: "",
-    Nombre: "",
-    NumSucursal: "",
-  },
   showForm: false,
   formulario: {
     xnQsjsdp: "",
@@ -61,8 +55,8 @@ const initialState: State = {
     xmIwtLD: "",
     actionType: "",
     returnURL: "",
-    First_Name: "",
-    Last_Name: "",
+    "First Name": "",
+    "Last Name": "",
     Mobile: "",
     Email: "",
     LEADCF10: "",
@@ -71,18 +65,36 @@ const initialState: State = {
   seleccion: [],
 };
 
+type DatosCotizador = {
+  alhajas: {
+    peso: number;
+    material: string;
+  };
+  diamantes: {
+    size: number;
+    quantity: number;
+    clarity: string;
+    color: string;
+    cut: string;
+  };
+  relojes: {
+    brand: string;
+    price: number;
+  };
+};
+
 // Defino el tipo de estado y acciones
 export type State = {
   CurrentStep?: number;
   CotizacionStatus?: boolean;
   selectedQuoter?: string | null;
+  datosCotizador: DatosCotizador;
   Monto?: number;
   Plazo?: number;
   PlazoQuincenal?: number;
   cotizacion: Cotizacion[];
   cotizacionAutomotor: CotizacionAuto;
   RenegociarAuto?: RenegociarAuto;
-  sucursal: Sede;
   showForm?: boolean;
   formulario: FormValues;
   seleccion: string[];
@@ -92,13 +104,21 @@ type Store = State & {
   setCurrentStep: (CurrentStep: number) => void;
   SetCotizacionStatus: (CotizacionStatus: boolean) => void;
   setSelectedQuoter: (selectedQuoter: string | null) => void;
+  guardarDatosAlhajas: (peso: number, material: string) => void;
+  guardarDatosDiamantes: (
+    size: number,
+    quantity: number,
+    clarity: string,
+    color: string,
+    cut: string
+  ) => void;
+  guardarDatosRelojes: (brand: string, price: number) => void;
   guardarMonto: (Monto: number) => void;
-  guardarPlazo: (Monto: number) => void;
-  guardarPlazoQuincenal: (Monto: number) => void;
+  guardarPlazo: (Plazo: number) => void;
+  guardarPlazoQuincenal: (PlazoQuincenal: number) => void;
   guardarCotizacion: (cotizacion: Cotizacion[]) => void;
   guardarCotizacionAutos: (cotizacionAutomotor: CotizacionAuto) => void;
-  guardarRenegociarAutos: (RenegociarAutos: RenegociarAuto) => void;
-  seleccionarSucursal: (sucursal: Sede) => void;
+  guardarRenegociarAutos: (RenegociarAuto: RenegociarAuto) => void;
   setShowForm: (showForm: boolean) => void;
   guardarFormulario: (formulario: FormValues) => void;
   agregarSeleccion: (seleccion: string) => void;
@@ -110,6 +130,45 @@ export const useStore = create<Store>((set) => ({
   setCurrentStep: (CurrentStep) => set(() => ({ CurrentStep })),
   SetCotizacionStatus: (CotizacionStatus) => set(() => ({ CotizacionStatus })),
   setSelectedQuoter: (selectedQuoter) => set({ selectedQuoter }),
+  guardarDatosAlhajas: (peso, material) =>
+    set((state) => ({
+      datosCotizador: {
+        ...state.datosCotizador,
+        alhajas: {
+          peso,
+          material,
+        },
+      },
+    })),
+  guardarDatosDiamantes: (
+    size: number,
+    quantity: number,
+    clarity: string,
+    color: string,
+    cut: string
+  ) =>
+    set((state) => ({
+      datosCotizador: {
+        ...state.datosCotizador,
+        diamantes: {
+          size,
+          quantity,
+          clarity,
+          color,
+          cut,
+        },
+      },
+    })),
+  guardarDatosRelojes: (brand: string, price: number) =>
+    set((state) => ({
+      datosCotizador: {
+        ...state.datosCotizador,
+        relojes: {
+          brand,
+          price,
+        },
+      },
+    })),
   guardarCotizacion: (cotizacion) => set(() => ({ cotizacion })),
   guardarCotizacionAutos: (cotizacionAutomotor) =>
     set(() => ({ cotizacionAutomotor })),
@@ -117,7 +176,6 @@ export const useStore = create<Store>((set) => ({
   guardarPlazo: (Plazo) => set(() => ({ Plazo })),
   guardarPlazoQuincenal: (PlazoQuincenal) => set(() => ({ PlazoQuincenal })),
   guardarRenegociarAutos: (RenegociarAuto) => set(() => ({ RenegociarAuto })),
-  seleccionarSucursal: (sucursal) => set(() => ({ sucursal })),
   guardarFormulario: (formulario) => set(() => ({ formulario })),
   setShowForm: (showForm) => set(() => ({ showForm })),
   agregarSeleccion: (seleccion) =>

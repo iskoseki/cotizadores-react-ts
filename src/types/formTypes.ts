@@ -5,12 +5,19 @@ export type FormValues = {
   xmIwtLD: string;
   actionType: string;
   returnURL: string;
-  First_Name: string;
-  Last_Name: string;
+  "First Name": string;
+  "Last Name": string;
   Mobile: string;
   Email: string;
-  LEADCF10: string;
-  LEADCF38: string;
+  LEADCF10?: string;
+  LEADCF38?: string;
+  LEADCF12?: string | null;
+  LEADCF44?: string;
+  LEADCF39?: string;
+  LEADCF41?: string;
+  LEADCF40?: string;
+  LEADCF42?: string;
+  LEADCF43?: string;
 };
  export interface SetForm {
     titulo_ingresa_tus_datos: string;

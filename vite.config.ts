@@ -19,7 +19,7 @@ export default defineConfig({
         target: 'https://crm.zoho.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/form/, '')
-      }
+      },
       
     }
   }, 

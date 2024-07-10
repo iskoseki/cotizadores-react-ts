@@ -5,6 +5,7 @@ import Loading from "../../components/Loading";
 import { QuoterItem } from "./QuoterItem";
 import { useDragMouse } from "../../hooks/useMauseDrag";
 import createApiUrl from "../../utils/creatApiUrl";
+import ErrorComponent from "../ErrorComponent";
 
 const QuaterSelector: React.FC<QuaterSelectorProps> = ({
   setSelectedQuoter,
@@ -26,21 +27,12 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
     handleTouchMove,
   } = useDragMouse(sliderRef);
 
-  if (!data) {
-    return <div>No data</div>;
-  }
-  const { cotizador, mostrar_cotizador } = data;
-
   if (isLoading) {
     return <Loading />;
   }
 
   if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="font-bold italic"> Error: {error.message}</p>
-      </div>
-    );
+    return <ErrorComponent error={error.message} />;
   }
 
   return (
@@ -64,8 +56,8 @@ const QuaterSelector: React.FC<QuaterSelectorProps> = ({
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
           >
-            {mostrar_cotizador === true ? (
-              cotizador.map((cotizador, index) => (
+            {data?.mostrar_cotizador === true ? (
+              data?.cotizador.map((cotizador, index) => (
                 <QuoterItem
                   key={index}
                   cotizador={cotizador}

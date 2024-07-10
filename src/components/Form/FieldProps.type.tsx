@@ -9,8 +9,3 @@ export type FieldProps = {
   errorMessage?: string;
   options?: { value: string; label: string }[];
 };
-
-export type HeaderFormName = {
-  autoFormName: string;
-  quoterFormName: string;
-};

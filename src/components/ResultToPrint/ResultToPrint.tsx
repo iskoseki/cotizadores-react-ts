@@ -5,14 +5,14 @@ import CotizacionAutoResult from "./CotizacionAutoResult";
 
 import ResultToPrintHead from "./ResultToPrintHead";
 import ClientInfo from "./ClientInfo";
+import CotizacionInfo from "./CotizacionInfo";
 
 export const ResultToPrint = forwardRef<HTMLElement, State>(
   ({ formulario }: State, ref) => {
-    //console.log("FORMULARIO", formulario);
-    const { cotizacion, Monto } = useStore();
-
+    const { cotizacion, Monto, selectedQuoter } = useStore();
+    console.log("Cotizador seleccionado es:", selectedQuoter);
     const resultComponent = () => {
-      if (cotizacion[0].PrestamoMaximo) {
+      if (cotizacion && cotizacion[0] && cotizacion[0].PrestamoMaximo) {
         return <CotizacionResult />;
       } else if (Monto) {
         return <CotizacionAutoResult />;
@@ -28,7 +28,7 @@ export const ResultToPrint = forwardRef<HTMLElement, State>(
         <div id="ResultToPrintBody">
           <ResultToPrintHead />
           <ClientInfo formulario={formulario} />
-
+          <CotizacionInfo />
           {resultComponent()}
         </div>
       </section>

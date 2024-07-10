@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import QuoterAlhajas from "./QuoterAlhajas";
 
-import { QuoterResult } from "../QuoterResult/QuoterResult";
+import QuoterResult from "../QuoterResult/";
 import { useStore } from "../../context/CotizacionContext";
 import { Cotizacion } from "../../types/cotizacionTypes";
-import QuoterRelojes from "./QuoterRelojes";
 
-export default function CotizadorRelojes() {
+export default function CotizadorAlhajas() {
   const [cotizacionCompletada, setCotizacionCompletada] = useState(false);
   const guardarCotizacion = useStore((state) => state.guardarCotizacion);
 
@@ -19,7 +19,7 @@ export default function CotizadorRelojes() {
       {cotizacionCompletada ? (
         <QuoterResult setCotizacionCompletada={setCotizacionCompletada} />
       ) : (
-        <QuoterRelojes
+        <QuoterAlhajas
           setCotizacionCompletada={setCotizacionCompletada}
           handleCotizacionCompleta={handleCotizacionCompleta}
         />

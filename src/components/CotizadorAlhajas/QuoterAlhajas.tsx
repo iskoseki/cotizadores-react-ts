@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { useFetch } from "../../hooks/useFetch";
 
 import { QuoterAlhajasProps } from "./quoterAlhajasProps.types";
@@ -8,18 +7,22 @@ import { fetchDataAlhajas } from "../../api/getQuoterAlhajas";
 import { useStore } from "../../context/CotizacionContext";
 import toast, { Toaster } from "react-hot-toast";
 import createApiUrl from "../../utils/creatApiUrl";
+import ErrorComponent from "../ErrorComponent";
 
 export default function QuoterAlhajas({
   setCotizacionCompletada,
   handleCotizacionCompleta,
 }: QuoterAlhajasProps) {
+  const [loading, setLoading] = useState(false);
   const [material, setMaterial] = useState<string>("");
   const [peso, setPeso] = useState<number>(0);
-  const { guardarCotizacion } = useStore();
-  const [loading, setLoading] = useState(false);
+  const { guardarCotizacion, guardarDatosAlhajas } = useStore();
+
   const initAlhajasUrl = import.meta.env.VITE_INIT_ALHAJAS;
   const createAlhajasUrl: string = createApiUrl(initAlhajasUrl);
+
   const notify = () => toast.error("Por favor, rellene todos los campos");
+
   const { error, isLoading, data } =
     useFetch<QuoterAlhajasProps>(createAlhajasUrl);
 
@@ -27,7 +30,7 @@ export default function QuoterAlhajas({
     return <Loading height={180} />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorComponent error={error} />;
   }
 
   const handleCotizarClick = async () => {
@@ -35,6 +38,7 @@ export default function QuoterAlhajas({
       setLoading(true);
       const data = await fetchDataAlhajas(peso, material);
       guardarCotizacion(data);
+      guardarDatosAlhajas(peso, material);
       setLoading(false);
       handleCotizacionCompleta(data);
       setCotizacionCompletada(true);

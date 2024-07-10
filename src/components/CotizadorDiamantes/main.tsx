@@ -1,28 +1,29 @@
 import React, { useState } from "react";
-import QuoterAlhajas from "./QuoterAlhajas";
-import { QuoterResult } from "../QuoterResult/QuoterResult";
+import QuoterResult from "../QuoterResult";
+import QuoterDiamantes from "./QuoterDiamantes";
 import { useStore } from "../../context/CotizacionContext";
 import { Cotizacion } from "../../types/cotizacionTypes";
 
-export default function CotizadorAlhajas() {
+export default function CotizadorDiamantes() {
   const [cotizacionCompletada, setCotizacionCompletada] = useState(false);
   const guardarCotizacion = useStore((state) => state.guardarCotizacion);
 
   const handleCotizacionCompleta = (resultadoCotizacion: Cotizacion[]) => {
     guardarCotizacion(resultadoCotizacion);
+    console.log("RESULTADO COTIZACIÓN", resultadoCotizacion);
     setCotizacionCompletada(true);
   };
 
   return (
-    <>
+    <div>
       {cotizacionCompletada ? (
         <QuoterResult setCotizacionCompletada={setCotizacionCompletada} />
       ) : (
-        <QuoterAlhajas
+        <QuoterDiamantes
           setCotizacionCompletada={setCotizacionCompletada}
           handleCotizacionCompleta={handleCotizacionCompleta}
         />
       )}
-    </>
+    </div>
   );
 }

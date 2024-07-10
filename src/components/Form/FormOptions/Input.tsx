@@ -35,7 +35,12 @@ export const Input = ({
         />
       </div>
       {errors[name] && (
-        <p className="text-[#FF0000] text-[12px]">*{errors[name].message}</p>
+        <p className="text-[#FF0000] text-[12px]">
+          *
+          {typeof errors[name].message === "string"
+            ? errors[name].message
+            : "Default error message"}
+        </p>
       )}
     </div>
   );

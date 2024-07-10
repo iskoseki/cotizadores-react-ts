@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "../../context/CotizacionContext";
 import { formatCurrency } from "../../utils/formarCurrency";
 import createApiUrl from "../../utils/creatApiUrl";
+import ErrorComponent from "../ErrorComponent";
 
 export default function QuoterAutomotor({
   setCotizacionCompletada,
@@ -28,7 +29,7 @@ export default function QuoterAutomotor({
     useCotizacionStore();
   const { Plazo } = useStore();
 
-  const { data: prestamo } = useFetchCotizacion(
+  const { data: prestamo, error: prestamoError } = useFetchCotizacion(
     Number(year),
     Number(brand),
     Number(models),
@@ -44,7 +45,11 @@ export default function QuoterAutomotor({
   }
 
   if (InitError) {
-    return <div>Error: {InitError?.message}</div>;
+    return <ErrorComponent error={InitError} />;
+  }
+
+  if (prestamoError) {
+    return <ErrorComponent error={prestamoError} />;
   }
 
   return (
@@ -69,7 +74,6 @@ export default function QuoterAutomotor({
                   }}
                 />
               ) : null}
-              {/* children => Form fields */}
               {children}
               <div className="col-12 mb-3">
                 <label

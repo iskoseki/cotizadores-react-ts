@@ -13,6 +13,8 @@ import useFetchBrands from "../../../hooks/QuoterAutomotorHooks/useBrands";
 import useFetchVersion from "../../../hooks/QuoterAutomotorHooks/useFetchVersion";
 import useCotizacionStore from "../../../context/cotizacionAutoStore";
 
+import OptionsError from "./OptionsError";
+
 export default function OptionsAutomotor() {
   const {
     year,
@@ -27,38 +29,52 @@ export default function OptionsAutomotor() {
     setProductType,
   } = useCotizacionStore();
 
-  const { data: yearData } = useFetchYears();
-  const { data: brandData } = useFetchBrands(Number(year));
-  const { data: modelsData } = useFetchModels(Number(year), Number(brand));
-  const { data: versionData } = useFetchVersion(
+  const { data: yearData, error: yearError } = useFetchYears();
+  const { data: brandData, error: brandError } = useFetchBrands(Number(year));
+  const { data: modelsData, error: modelsError } = useFetchModels(
+    Number(year),
+    Number(brand)
+  );
+  const { data: versionData, error: versionError } = useFetchVersion(
     Number(year),
     Number(brand),
     Number(models)
   );
 
+  if (yearError || brandError || modelsError || versionError) {
+    return <OptionsError error={yearError || brandError || modelsError} />;
+  }
+
   return (
     <Suspense fallback={<Loading height={200} />}>
       <div className="row mb-4">
-        <YearOption year={year} setYear={setYear} yearOptions={yearData} />
-        <BrandOption
-          brand={brand}
-          setBrand={setBrand}
-          brandOptions={brandData}
-        />
-        <ModelOption
-          models={models}
-          setModels={setModels}
-          modelsOptions={modelsData}
-        />
-        <VersionOption
-          version={version}
-          setVersion={setVersion}
-          versionOptions={versionData}
-        />
-        <ProductOption
-          productType={productType}
-          setProductType={setProductType}
-        />
+        {yearError ? (
+          <OptionsError error={yearError} />
+        ) : (
+          <>
+            <YearOption year={year} setYear={setYear} yearOptions={yearData} />
+
+            <BrandOption
+              brand={brand}
+              setBrand={setBrand}
+              brandOptions={brandData}
+            />
+            <ModelOption
+              models={models}
+              setModels={setModels}
+              modelsOptions={modelsData}
+            />
+            <VersionOption
+              version={version}
+              setVersion={setVersion}
+              versionOptions={versionData}
+            />
+            <ProductOption
+              productType={productType}
+              setProductType={setProductType}
+            />
+          </>
+        )}
       </div>
     </Suspense>
   );

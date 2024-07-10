@@ -9,6 +9,8 @@ import { fetchDataDiamantes } from "../../api/getQuoterDiamantes";
 import Loading from "../Loading";
 import toast, { Toaster } from "react-hot-toast";
 import createApiUrl from "../../utils/creatApiUrl";
+import { useStore } from "../../context/CotizacionContext";
+import ErrorComponent from "../ErrorComponent";
 
 const QuoterDiamantes = ({
   setCotizacionCompletada,
@@ -26,18 +28,19 @@ const QuoterDiamantes = ({
   const createDiamanteUrl: string = createApiUrl(initDiamantesUrl);
   const DiamantesResponse = useFetch<QuoterDiamantesProps>(createDiamanteUrl);
   const data = DiamantesResponse.data;
+  const { guardarDatosDiamantes } = useStore();
+
   const { error, isLoading } = DiamantesResponse;
   if (isLoading) {
     return <Loading />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorComponent error={error} />;
   }
   const handleCotizarClick = async () => {
-    console.log("handleCotizacion", size, quantity, clarity, color, cut);
-
     if (size && quantity && clarity && color && cut) {
       setLoading(true);
+      guardarDatosDiamantes(size, quantity, clarity, color, cut);
       const data = await fetchDataDiamantes(
         size,
         quantity,
@@ -122,15 +125,15 @@ const QuoterDiamantes = ({
                       type="submit"
                       onClick={handleCotizarClick}
                       className={`btn btn-primary rounded-[8px] py-2 px-5 "
-                  id="btn-paso-adelante-1  ${
-                    size === 0 ||
-                    quantity === 0 ||
-                    clarity === "" ||
-                    color === "" ||
-                    cut === ""
-                      ? "btn-secondary disabled w-full md:max-w-[195px]"
-                      : " w-full md:max-w-[195px] "
-                  }`}
+                              id="btn-paso-adelante-1  ${
+                                size === 0 ||
+                                quantity === 0 ||
+                                clarity === "" ||
+                                color === "" ||
+                                cut === ""
+                                  ? "btn-secondary disabled w-full md:max-w-[195px]"
+                                  : " w-full md:max-w-[195px] "
+                              }`}
                       disabled={
                         size === 0 ||
                         quantity === 0 ||

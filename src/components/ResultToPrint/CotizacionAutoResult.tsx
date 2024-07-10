@@ -9,7 +9,7 @@ export default function CotizacionAutoResult() {
         <>
           <div className="card border-dark text-dark bg-24 mb-4 ">
             <div className="card-body">
-              <div className="bold text-normal ">Datos de cotización</div>
+              <div className="bold text-normal ">Cotización</div>
               <div className="row print-row-titles">
                 <div className="col-12 col-md-4">
                   <p className="text-uppercase text-small book">

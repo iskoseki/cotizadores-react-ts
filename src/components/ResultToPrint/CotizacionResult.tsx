@@ -12,7 +12,7 @@ export default function CotizacionResult() {
             className="card p-4 border-dark text-dark bg-24 mb-4"
           >
             <h2 className="font-bold text-[20px] mb-3 w-full text-pretty">
-              Datos de cotización
+              Cotización
             </h2>
             <div className="card-body p-0 md:p-2">
               <div className="print-row-titles row mb-3 text-left">

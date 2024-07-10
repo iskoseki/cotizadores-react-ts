@@ -22,11 +22,9 @@ export default function Claridad({ data, setClarity }: ClaridadProps) {
   return (
     <div className="mt-4 br-24 p-8 bg-white">
       <h1 className="text-normal-dos text-dark text-center bold">Claridad</h1>
-
       <hr className="bg-dark my-4" />
       <div className="relative ">
         <button className="xl:hidden absolute left-[-18px] top-[45px]  z-10">
-          {/* Botón de flecha izquierda */}
           <ArrowIconLeft />
         </button>
         <div
@@ -98,7 +96,7 @@ export default function Claridad({ data, setClarity }: ClaridadProps) {
             <p>Error en la carga</p>
           )}
         </div>
-        <button className="xl:hidden absolute right-[-19px]  top-[45px] z-10">
+        <button className="xl:hidden absolute right-[-19px] top-[45px] z-10">
           <ArrowIcon />
         </button>
       </div>

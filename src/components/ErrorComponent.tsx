@@ -1,4 +1,5 @@
 import React from "react";
+import createApiUrl from "../utils/creatApiUrl";
 
 export default function ErrorComponent({ error }) {
   return (
@@ -19,10 +20,10 @@ export default function ErrorComponent({ error }) {
 
       <h1 className="text-[32px] text-[#C04356] font-bold">{error.message}</h1>
       <p className="text-[24px]  max-w-3xl text-pretty text-[#757575] mt-[12px] mb-8">
-        Lo sentimos, no encontramos con problemas para hacer el envío.
+        Lo sentimos, ha ocurrido un error inesperado.
       </p>
       <a
-        href="https://bgwp.bgroup.com.ar/cotizacion/"
+        href={createApiUrl(`/cotizacion/`)}
         className={`flex flex-shrink-0 justify-center  hover:bg-[#E65369] items-center gap-2.5 py-2 px-6 w-full md:w-[368px] h-[40px]  bg-[#a6192e] Sans" '] text-white text-center rounded-5xl leading-normal transition-all duration-300 ease-in-out pointer`}
       >
         Cotizar
@@ -33,13 +34,13 @@ export default function ErrorComponent({ error }) {
       <div className="flex gap-[16px]">
         <a
           className="text-[16px] font-[600] underline text-[#9E9E9E]"
-          href="https://bgwp.bgroup.com.ar/"
+          href={createApiUrl("/")}
         >
           Home
         </a>
         <a
           className="text-[16px] text-[#9E9E9E] font-thin underline"
-          href="https://bgwp.bgroup.com.ar/quienes-somos/"
+          href={createApiUrl("/quienes-somos/")}
         >
           ¿Quiénes somos?
         </a>

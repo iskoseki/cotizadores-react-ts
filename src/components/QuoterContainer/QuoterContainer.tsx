@@ -4,7 +4,7 @@ import { useStore } from "../../context/CotizacionContext";
 import Loading from "../Loading";
 
 import QuoterCicle from "../QuoterCicle/QuoterCicle";
-import ThirdStep from "../../routes/FormPage";
+import ThirdStep from "../../pages/FormPage";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 const QuaterSelector = React.lazy(
@@ -52,34 +52,32 @@ export default function QuoterContainer() {
   };
 
   return (
-    <>
-      <Suspense fallback={<Loading height={400} />}>
-        {showForm ? (
-          <ThirdStep />
-        ) : (
-          <section ref={scroll} className="bg-[#f8f8f8] section cotizador ">
-            <Suspense fallback={<Loading />}>
-              <div className="hidden md:block">
-                <QuoterCicle />
-              </div>
-              <div className="container">
-                <div className="d-flex justify-start md:justify-center">
-                  <div className="col-12 col-md-10">
-                    <QuaterSelector
-                      selectedQuoter={selectedQuoter}
-                      setSelectedQuoter={setSelectedQuoter}
-                    />
-                    <div className="d-md-none">
-                      <QuoterCicle />
-                    </div>
-                    {selectedQuoter && quoterComponents[selectedQuoter]}
+    <Suspense fallback={<Loading height={400} />}>
+      {showForm ? (
+        <ThirdStep />
+      ) : (
+        <section ref={scroll} className="bg-[#f8f8f8] section cotizador ">
+          <Suspense fallback={<Loading />}>
+            <div className="hidden md:block">
+              <QuoterCicle />
+            </div>
+            <div className="container">
+              <div className="d-flex justify-start md:justify-center">
+                <div className="col-12 col-md-10">
+                  <QuaterSelector
+                    selectedQuoter={selectedQuoter}
+                    setSelectedQuoter={setSelectedQuoter}
+                  />
+                  <div className="d-md-none">
+                    <QuoterCicle />
                   </div>
+                  {selectedQuoter && quoterComponents[selectedQuoter]}
                 </div>
               </div>
-            </Suspense>
-          </section>
-        )}
-      </Suspense>
-    </>
+            </div>
+          </Suspense>
+        </section>
+      )}
+    </Suspense>
   );
 }

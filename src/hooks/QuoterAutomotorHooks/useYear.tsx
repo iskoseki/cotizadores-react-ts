@@ -17,7 +17,7 @@ interface Data {
 export const useFetchYears = (): {
   data: Data | null;
   isLoading: boolean;
-  error: string | null;
+  error: string | number | null;
 } => {
   const [data, setData] = useState<Data | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ export const useFetchYears = (): {
           method: "post",
           maxBodyLength: Infinity,
           url: createApiUrl(
-            `/wp-admin/admin-ajax.php?action=montepio_get_anios`
+            `/wp-admin/admin-ajax.php?action=montepio_get_anios` ///wp-admin/admin-ajax.php?action=montepio_get_anios
           ),
         };
 
@@ -44,7 +44,7 @@ export const useFetchYears = (): {
         setData(jsonData.obj_data);
       } catch (err: unknown) {
         if (err && err instanceof AxiosError) {
-          setError(err.message);
+          setError(err.status ? String(err.status) : null);
         } else {
           console.error("Unexpected error:", err);
           setError("An unexpected error occurred.");

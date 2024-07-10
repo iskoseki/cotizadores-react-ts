@@ -6,7 +6,7 @@ import { useStore } from "../context/CotizacionContext";
 import createApiUrl from "../utils/creatApiUrl";
 
 export function FourthStepContent() {
-  const { cotizacion, cotizacionAutomotor, formulario, sucursal } = useStore();
+  const { cotizacion, cotizacionAutomotor, formulario } = useStore();
 
   const componentRef = React.useRef<HTMLDivElement>(null);
 
@@ -29,7 +29,6 @@ export function FourthStepContent() {
                     ref={componentRef}
                     cotizacion={cotizacion}
                     cotizacionAutomotor={cotizacionAutomotor}
-                    sucursal={sucursal}
                     formulario={formulario}
                     seleccion={[""]}
                   />

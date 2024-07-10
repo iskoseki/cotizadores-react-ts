@@ -7,6 +7,7 @@ import { useStore } from "../../context/CotizacionContext";
 import { fetchDataRelojes } from "../../api/getQuoterRelojes";
 import CurrencyInput from "react-currency-input-field";
 import createApiUrl from "../../utils/creatApiUrl";
+import ErrorComponent from "../ErrorComponent";
 
 export default function QuoterRelojes({
   setCotizacionCompletada,
@@ -14,7 +15,7 @@ export default function QuoterRelojes({
 }: QuoterAlhajasProps) {
   const [marca, setMarca] = useState<string>("");
   const [precio, setPrecio] = useState<number>(0);
-  const { guardarCotizacion } = useStore();
+  const { guardarCotizacion, guardarDatosRelojes } = useStore();
   const [loading, setLoading] = useState(false);
   const initRelojesUrl = import.meta.env.VITE_INIT_RELOJES;
   const createRelojesUrl: string = createApiUrl(initRelojesUrl);
@@ -27,18 +28,18 @@ export default function QuoterRelojes({
     return <Loading />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorComponent error={error} />;
   }
 
   const handleCotizarClick = async () => {
     if (precio && marca) {
       setLoading(true);
-
       const data = await fetchDataRelojes(precio, marca);
-      setLoading(false);
+      guardarDatosRelojes(marca, precio);
       guardarCotizacion(data);
       handleCotizacionCompleta(data);
       setCotizacionCompletada(true);
+      setLoading(false);
     } else {
       notify();
     }
