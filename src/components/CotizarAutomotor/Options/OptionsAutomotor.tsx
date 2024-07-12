@@ -24,8 +24,11 @@ export default function OptionsAutomotor() {
     productType,
     setYear,
     setBrand,
+    setBrandText,
     setModels,
+    setModelsText,
     setVersion,
+    setVersionText,
     setProductType,
   } = useCotizacionStore();
 
@@ -56,17 +59,20 @@ export default function OptionsAutomotor() {
 
             <BrandOption
               brand={brand}
+              setBrandText={setBrandText}
               setBrand={setBrand}
               brandOptions={brandData}
             />
             <ModelOption
               models={models}
+              setModelsText={setModelsText}
               setModels={setModels}
               modelsOptions={modelsData}
             />
             <VersionOption
               version={version}
               setVersion={setVersion}
+              setVersionText={setVersionText}
               versionOptions={versionData}
             />
             <ProductOption

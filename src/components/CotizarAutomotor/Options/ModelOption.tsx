@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function ModelOption({ models, setModels, modelsOptions }) {
+export default function ModelOption({
+  models,
+  setModels,
+  setModelsText,
+  modelsOptions,
+}) {
   return (
     <div className="col-12 mb-4">
       <label htmlFor="basic-url" className="form-label text-dark bold">
@@ -10,7 +15,10 @@ export default function ModelOption({ models, setModels, modelsOptions }) {
         className="form-select border-dark py-2"
         aria-label="Default select example"
         value={models}
-        onChange={(e) => setModels(e.target.value)}
+        onChange={(e) => {
+          setModelsText(e.target.options[e.target.selectedIndex].text);
+          setModels(e.target.value);
+        }}
       >
         <option defaultValue={"Default"}>Selecciona un modelo</option>
         {modelsOptions

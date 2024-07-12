@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function BrandOption({ brand, setBrand, brandOptions }) {
+export default function BrandOption({
+  brand,
+  setBrand,
+  setBrandText,
+  brandOptions,
+}) {
   return (
     <div className="col-12 mb-4">
       <label htmlFor="basic-url" className="form-label text-dark bold">
@@ -10,7 +15,10 @@ export default function BrandOption({ brand, setBrand, brandOptions }) {
         className="form-select border-dark py-2"
         aria-label="Default select example"
         value={brand}
-        onChange={(e) => setBrand(e.target.value)}
+        onChange={(e) => {
+          setBrandText(e.target.options[e.target.selectedIndex].text);
+          setBrand(e.target.value);
+        }}
       >
         <option defaultValue={"Default"}>Seleccione una marca</option>
         {brandOptions &&

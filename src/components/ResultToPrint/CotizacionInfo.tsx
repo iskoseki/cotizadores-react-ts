@@ -2,16 +2,8 @@ import React from "react";
 import { useStore } from "../../context/CotizacionContext";
 import useCotizacionStore from "../../context/cotizacionAutoStore";
 export default function CotizacionInfo() {
-  const {
-    year,
-    brand,
-    brandText,
-    models,
-    modelsText,
-    version,
-    versionText,
-    product,
-  } = useCotizacionStore();
+  const { year, brandText, modelsText, versionText, product } =
+    useCotizacionStore();
   const { selectedQuoter, datosCotizador } = useStore();
   const Alhajas = datosCotizador?.alhajas;
   const Relojes = datosCotizador?.relojes;
@@ -96,15 +88,15 @@ export default function CotizacionInfo() {
               </div>
               <div className="col-4 col-md-2 mb-4">
                 <p className="text-uppercase text-small book">Marca</p>
-                <p className="text-normal mb-0">{`${brand && brand}`}</p>
+                <p className="text-normal mb-0">{`${brandText}`}</p>
               </div>
               <div className="col-4 col-md-2 mb-4">
                 <p className="text-uppercase text-small book">Modelo</p>
-                <p className="text-normal mb-0">{`${models}`}</p>
+                <p className="text-normal mb-0">{`${modelsText}`}</p>
               </div>
               <div className="col-4 col-md-2 mb-4">
                 <p className="text-uppercase text-small book">Version</p>
-                <p className="text-normal mb-0">{`${version}`}</p>
+                <p className="text-normal mb-0">{`${versionText}`}</p>
               </div>
               <div className="col-4 col-md-2 mb-4">
                 <p className="text-uppercase text-small book">Producto</p>

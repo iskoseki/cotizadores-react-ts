@@ -10,6 +10,8 @@ export type FormValues = {
   Mobile: string;
   Email: string;
   LEADCF10?: string;
+  LEADCF16?: string;
+  LEADCF47?: string;
   LEADCF38?: string;
   LEADCF12?: string | null;
   LEADCF44?: string;
