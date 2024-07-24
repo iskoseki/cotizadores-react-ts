@@ -4,6 +4,7 @@ import { ValuesOcultos } from "../types/formTypes";
 
 export default function useFormFields() {
   const { visibles, ocultos, visiblesAuto, ocultosAuto } = useFormValues();
+
   const camposOcultos =
     ocultos &&
     ocultos.map((campo: ValuesOcultos) => ({
@@ -18,6 +19,7 @@ export default function useFormFields() {
       name: campo.nombre_del_campo,
       value: campo.valor_del_campo,
     }));
+
   const camposVisibles = visibles.map((campo: visiblesType) => {
     let pattern;
     let maxLength;
@@ -60,6 +62,7 @@ export default function useFormFields() {
         : undefined,
     };
   });
+
   const camposVisiblesAutos = visiblesAuto.map((campo: visiblesType) => {
     let pattern;
     let maxLength;

@@ -36,6 +36,7 @@ const ThirdStep: React.FC = () => {
   const { formFields, formAutoFields } = useFormFields();
   const { action, title } = useFormValues();
   const { id, error: errorUser } = UserID();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setCurrentStep(2);
@@ -60,6 +61,7 @@ const ThirdStep: React.FC = () => {
 
     try {
       if (errorUser) {
+        formData.LEADCF47 = String(id);
         throw new Error(errorUser);
       } else {
         formData.LEADCF47 = String(id);
@@ -113,7 +115,8 @@ const ThirdStep: React.FC = () => {
       }
 
       console.log(
-        `🤝 Bienvenido ${formData["First Name"]}, tu cita fue enviada con éxito, status: ${response.status}.`
+        `🤝 Bienvenido ${formData["First Name"]}, tu cita fue enviada con éxito, status: ${response.status}.`,
+        postData
       );
       SetCotizacionStatus(true);
     } catch (error) {
